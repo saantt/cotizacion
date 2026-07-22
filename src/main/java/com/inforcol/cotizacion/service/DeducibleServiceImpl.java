@@ -19,7 +19,7 @@ public class DeducibleServiceImpl implements DeducibleService {
     }
 
     @Override
-    public List<DeducibleResponseDTO> listar() {
+    public List<DeducibleResponseDTO> getAllDeducibles() {
 
         List<Deducible> lista = repository.findAll();
 
@@ -41,7 +41,7 @@ public class DeducibleServiceImpl implements DeducibleService {
     }
 
     @Override
-    public DeducibleResponseDTO buscar(Long id) {
+    public DeducibleResponseDTO findByDeducibleId(Long id) {
 
         Deducible deducible = repository.findById(id).orElse(null);
 
@@ -59,7 +59,7 @@ public class DeducibleServiceImpl implements DeducibleService {
     }
 
     @Override
-    public DeducibleResponseDTO guardar(DeducibleRequestDTO request) {
+    public DeducibleResponseDTO createDeducible(DeducibleRequestDTO request) {
 
         Deducible deducible = new Deducible();
 
@@ -78,7 +78,7 @@ public class DeducibleServiceImpl implements DeducibleService {
     }
 
     @Override
-    public DeducibleResponseDTO actualizar(Long id, DeducibleRequestDTO request) {
+    public DeducibleResponseDTO updateDeducible(Long id, DeducibleRequestDTO request) {
 
         Deducible deducible = repository.findById(id).orElse(null);
 
@@ -101,7 +101,7 @@ public class DeducibleServiceImpl implements DeducibleService {
     }
 
     @Override
-    public void eliminar(Long id) {
+    public void deleteDeducible(Long id) {
 
         repository.deleteById(id);
 
