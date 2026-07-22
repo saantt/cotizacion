@@ -1,7 +1,11 @@
-package com.inforcol.cotizacion.DTO;
+package com.inforcol.cotizacion.dto.deducibleDTO;
 
+import lombok.Data;
+
+@Data
 public class DeducibleRequestDTO {
 
-    int id_deducible;
-    
+    private int porcentaje;
+    private Double monto_minimo;
+
 }
