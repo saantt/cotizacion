@@ -1,11 +1,12 @@
-package com.inforcol.cotizacion.dto;
+package com.inforcol.cotizacion.dto.CobeturaRiesgoDto;
 
 import java.math.BigDecimal;
 
 import lombok.Data;
 
 @Data
-public class CoberturaRiesgoResponseDto {
+
+public class CoberturaRiesgoDto {
     private String idCotizacion;
     private String idCobertura;
     private Integer idDeducible;

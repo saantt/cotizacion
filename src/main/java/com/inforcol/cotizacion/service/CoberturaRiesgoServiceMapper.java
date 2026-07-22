@@ -2,8 +2,8 @@ package com.inforcol.cotizacion.service;
 
 import org.springframework.stereotype.Service;
 
-import com.inforcol.cotizacion.dto.CoberturaRiesgoRequestDto;
-import com.inforcol.cotizacion.dto.CoberturaRiesgoResponseDto;
+import com.inforcol.cotizacion.dto.CobeturaRiesgoDto.CoberturaRiesgoRequestDto;
+import com.inforcol.cotizacion.dto.CobeturaRiesgoDto.CoberturaRiesgoResponseDto;
 import com.inforcol.cotizacion.model.CoberturaRiesgo;
 
 @Service

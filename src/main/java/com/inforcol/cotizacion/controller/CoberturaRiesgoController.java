@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inforcol.cotizacion.dto.CoberturaRiesgoRequestDto;
-import com.inforcol.cotizacion.dto.CoberturaRiesgoResponseDto;
+import com.inforcol.cotizacion.dto.CobeturaRiesgoDto.CoberturaRiesgoRequestDto;
+import com.inforcol.cotizacion.dto.CobeturaRiesgoDto.CoberturaRiesgoResponseDto;
 import com.inforcol.cotizacion.service.CoberturaRiesgoService;
 
 import lombok.extern.slf4j.Slf4j;
