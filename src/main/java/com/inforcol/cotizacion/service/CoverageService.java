@@ -1,0 +1,20 @@
+package com.inforcol.cotizacion.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.inforcol.cotizacion.model.CoverageModel;
+import com.inforcol.cotizacion.repository.CoverageRepository;
+
+@Service
+public class CoverageService {
+
+    @Autowired
+    private CoverageRepository coverageRepository;
+
+    public List<CoverageModel> getAllCoverages(){
+        return this.coverageRepository.findAll();
+    }
+}
