@@ -1,7 +1,7 @@
 package com.inforcol.cotizacion.service;
 
-import com.inforcol.cotizacion.DTO.ImpuestoCotizacionRequest;
-import com.inforcol.cotizacion.DTO.ImpuestoCotizacionResponse;
+import com.inforcol.cotizacion.dto.ImpuestoCotizacionRequest;
+import com.inforcol.cotizacion.dto.ImpuestoCotizacionResponse;
 import com.inforcol.cotizacion.model.ImpuestoCotizacion;
 import com.inforcol.cotizacion.repository.ImpuestoCotizacionRepository;
 import org.springframework.stereotype.Service;

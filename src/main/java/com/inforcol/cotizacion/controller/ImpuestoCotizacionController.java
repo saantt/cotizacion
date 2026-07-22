@@ -1,7 +1,7 @@
 package com.inforcol.cotizacion.controller;
 
-import com.inforcol.cotizacion.DTO.ImpuestoCotizacionRequest;
-import com.inforcol.cotizacion.DTO.ImpuestoCotizacionResponse;
+import com.inforcol.cotizacion.dto.ImpuestoCotizacionRequest;
+import com.inforcol.cotizacion.dto.ImpuestoCotizacionResponse;
 import com.inforcol.cotizacion.service.ImpuestoCotizacionService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
