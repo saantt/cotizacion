@@ -9,19 +9,15 @@ import com.inforcol.cotizacion.DTO.datos_riesgo.DatosRiesgoDTO;
 import com.inforcol.cotizacion.model.DatosRiesgo;
 import com.inforcol.cotizacion.repository.DatosRiesgoRepository;
 
-@Service // Única anotación necesaria. Quitamos @Data y @AllArgsConstructor
+@Service
 public class DatosRiesgoService {
 
-    // 1. Declaramos el repositorio como final (Inmutabilidad obligatoria de Spring)
     private final DatosRiesgoRepository repository;
 
-    // 2. Constructor explícito y manual. Cero magia de Lombok aquí.
-    // Esto garantiza que Spring inyecte el repositorio de forma transparente.
     public DatosRiesgoService(DatosRiesgoRepository repository) {
         this.repository = repository;
     }
 
-    // 3. Obtener todos los registros de forma sencilla
     public List<DatosRiesgoDTO> obtenerTodos() {
         List<DatosRiesgo> entidades = repository.findAll();
         List<DatosRiesgoDTO> dtos = new ArrayList<>();
@@ -29,7 +25,6 @@ public class DatosRiesgoService {
         for (DatosRiesgo entidad : entidades) {
             DatosRiesgoDTO dto = new DatosRiesgoDTO();
             
-            // Usamos setters tradicionales para no depender de constructores rígidos en el DTO
             dto.setIdCotizacion(entidad.getIdCotizacion());
             dto.setPlaca(entidad.getPlaca());
             dto.setCcTomador(entidad.getCcTomador());
@@ -43,7 +38,6 @@ public class DatosRiesgoService {
         return dtos;
     }
 
-    // 4. Guardar un registro de forma sencilla
     public void guardar(DatosRiesgoDTO dto) {
         DatosRiesgo entidad = new DatosRiesgo();
         
