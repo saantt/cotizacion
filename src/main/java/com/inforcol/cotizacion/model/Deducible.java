@@ -12,10 +12,10 @@ import lombok.Data;
 @Data
 public class Deducible {
 
-     @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private Long id_deducible;
-     private int porcentaje;
-     private Double monto_minimo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_deducible;
+    private int porcentaje;
+    private Double monto_minimo;
 
 }
