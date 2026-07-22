@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface DeducibleService {
 
-    List<DeducibleResponseDTO> listar();
+    List<DeducibleResponseDTO> getAllDeducibles();
 
-    DeducibleResponseDTO buscar(Long id);
+    DeducibleResponseDTO findByDeducibleId(Long id);
 
-    DeducibleResponseDTO guardar(DeducibleRequestDTO request);
+    DeducibleResponseDTO createDeducible(DeducibleRequestDTO request);
 
-    DeducibleResponseDTO actualizar(Long id,DeducibleRequestDTO request);
+    DeducibleResponseDTO updateDeducible(Long id,DeducibleRequestDTO request);
 
-    void eliminar(Long id);
+    void deleteDeducible(Long id);
 
 }
