@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.inforcol.cotizacion.dto.marcavehiculo.MarcaVehiculoRequestDto;
 import com.inforcol.cotizacion.dto.marcavehiculo.MarcaVehiculoResponseDto;
+import com.inforcol.cotizacion.mapper.MarcaVehiculoMapper;
 import com.inforcol.cotizacion.model.MarcaVehiculo;
 import com.inforcol.cotizacion.repository.MarcaVehiculoRepository;
 
@@ -48,7 +49,6 @@ public class MarcaVehiculoService {
                 .orElseThrow(() -> new RuntimeException("Marca de vehículo no encontrada con ID: "+ id));
  
         marcaVehiculoMapper.updateEntityFromDto(dto, marcaVehiculo);
- 
         return marcaVehiculoMapper.toDto(marcaVehiculoRepository.save(marcaVehiculo));
     }
 
