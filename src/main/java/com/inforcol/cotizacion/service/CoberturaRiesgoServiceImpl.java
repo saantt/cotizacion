@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.inforcol.cotizacion.dto.CoberturaRiesgoRequestDto;
-import com.inforcol.cotizacion.dto.CoberturaRiesgoResponseDto;
+import com.inforcol.cotizacion.dto.CobeturaRiesgoDto.CoberturaRiesgoRequestDto;
+import com.inforcol.cotizacion.dto.CobeturaRiesgoDto.CoberturaRiesgoResponseDto;
 import com.inforcol.cotizacion.model.CoberturaRiesgo;
 import com.inforcol.cotizacion.model.CoberturaRiesgoId;
 import com.inforcol.cotizacion.repository.CoberturaRiesgoRepository;
