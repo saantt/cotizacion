@@ -2,6 +2,8 @@ package com.inforcol.cotizacion.mapper;
 
 import com.inforcol.cotizacion.DTO.datos_riesgo.DatosRiesgoDTO;
 import com.inforcol.cotizacion.model.DatosRiesgo;
+
+import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -27,5 +29,7 @@ public interface DatosRiesgoMapper {
     @Mapping(source = "servicio", target = "tipoServicio")
     DatosRiesgo dtoAModelo(DatosRiesgoDTO dto);
 
+    @InheritConfiguration(name = "dtoAModelo")
+    @Mapping(target = "idCotizacion", ignore = true)
     void actualizarEntidad(DatosRiesgoDTO dto, @MappingTarget DatosRiesgo entidad);
 }
