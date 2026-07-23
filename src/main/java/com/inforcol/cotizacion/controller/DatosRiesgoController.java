@@ -3,8 +3,12 @@ package com.inforcol.cotizacion.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,9 +31,24 @@ public class DatosRiesgoController {
     }
 
     @PostMapping
-    public String crear(@Valid @RequestBody DatosRiesgoDTO dto) {
-        service.guardar(dto);
-        return "Registro guardado exitosamente";
+    public DatosRiesgoDTO crear(@Valid @RequestBody DatosRiesgoDTO dto) {
+        return service.guardar(dto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<DatosRiesgoDTO> actualizar(
+            @PathVariable String id,
+            @Valid @RequestBody DatosRiesgoDTO dto
+    ) {
+
+        DatosRiesgoDTO respuesta = service.actualizar(id, dto);
+
+        return ResponseEntity.ok(respuesta);
+    }
+
+    @DeleteMapping("/{id}")
+    public DatosRiesgoDTO eliminar(@PathVariable String id) {
+        return service.eliminar(id);
     }
 
 }
