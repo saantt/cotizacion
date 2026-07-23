@@ -23,7 +23,7 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/api/marcaVehiculo")
+@RequestMapping("/api/marcavehiculo")
 @Slf4j
 public class MarcaVehiculoController {
 
@@ -48,11 +48,8 @@ public class MarcaVehiculoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> obtenerMarcaVehiculoPorId(@Valid @PathVariable Long id, BindingResult result) {
+    public ResponseEntity<MarcaVehiculoResponseDto> obtenerMarcaVehiculoPorId(@Valid @PathVariable Long id) {
         log.info("MarcaVehiculoController -> obtenerMarcaVehiculoPorId() {}", marcaVehiculoService.obtenerMarcaVehiculoPorId(id));
-        if(result.hasErrors()){
-            return ResponseEntity.badRequest().body(result.getAllErrors());
-        }
         return ResponseEntity.ok(marcaVehiculoService.obtenerMarcaVehiculoPorId(id));
     }
 
@@ -66,11 +63,8 @@ public class MarcaVehiculoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarMarcaVehiculo(@Valid @PathVariable Long id, BindingResult result) {
+    public ResponseEntity<MarcaVehiculoResponseDto> eliminarMarcaVehiculo(@Valid @PathVariable Long id) {
         log.info("MarcaVehiculoController ->  eliminarMarcaVehiculo() {}", id);
-        if(result.hasErrors()){
-            return ResponseEntity.badRequest().body(result.getAllErrors());
-        }
         marcaVehiculoService.eliminarMarcaVehiculo(id);
         return ResponseEntity.noContent().build();
     }
