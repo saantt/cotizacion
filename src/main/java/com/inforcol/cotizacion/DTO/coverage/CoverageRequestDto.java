@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class CoverageRequestDto {
+    private String id_cobertura;
     private String nombre_cobertura;
     private BigDecimal tasa_publico;
     private BigDecimal tasa_particular;
