@@ -21,7 +21,7 @@ public class DatosRiesgo {
 
     @Id
     @Column(name = "id_cotizacion", length = 50)
-    private Long idCotizacion;
+    private String idCotizacion;
 
     @Column(name = "placa", nullable = false, length = 10)
     private String placa;
