@@ -1,9 +1,11 @@
 package com.inforcol.cotizacion.service;
 
-import com.inforcol.cotizacion.dto.deducibleDTO.DeducibleRequestDTO;
-import com.inforcol.cotizacion.dto.deducibleDTO.DeducibleResponseDTO;
+
 
 import java.util.List;
+
+import com.inforcol.cotizacion.dto.deducibleDTO.DeducibleRequestDTO;
+import com.inforcol.cotizacion.dto.deducibleDTO.DeducibleResponseDTO;
 
 public interface DeducibleService {
 
