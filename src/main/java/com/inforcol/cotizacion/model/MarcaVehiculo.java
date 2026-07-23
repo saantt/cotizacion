@@ -15,13 +15,10 @@ public class MarcaVehiculo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_marca;
 
-    @NotBlank(message = "El campo no puede ser nulo ni vacío.")
     private String nombre_marca;
 
-    @NotBlank(message = "El campo no puede ser nulo ni vacío.")
     private String pais_origen;
 
-    @NotBlank(message = "El campo no puede ser nulo ni vacío.")
     private String abreviatura;
 
 }
