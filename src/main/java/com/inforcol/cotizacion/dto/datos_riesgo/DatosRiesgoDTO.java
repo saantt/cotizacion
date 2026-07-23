@@ -1,4 +1,4 @@
-package com.inforcol.cotizacion.DTO.datos_riesgo;
+package com.inforcol.cotizacion.dto.datos_riesgo;
 
 import java.time.LocalDateTime;
 

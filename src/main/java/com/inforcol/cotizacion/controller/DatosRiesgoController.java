@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.inforcol.cotizacion.DTO.datos_riesgo.DatosRiesgoDTO;
+import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoDTO;
 import com.inforcol.cotizacion.service.DatosRiesgoService;
 
 import jakarta.validation.Valid;
