@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import com.inforcol.cotizacion.model.DatosRiesgo.TipoServicio;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,24 +18,24 @@ public class DatosRiesgoDTO {
 
     @NotBlank(message = "El ID de cotización es obligatorio")
     @Size(max = 50)
-    private String idCotizacion;
+    private String id;
 
     @NotBlank(message = "La placa es obligatoria")
     @Size(max = 10)
-    private String placa;
+    private String matricula;
 
     @NotBlank(message = "La cédula del tomador es obligatoria")
     @Size(max = 20)
-    private String ccTomador;
+    private String cedula;
 
-    @NotBlank(message = "El ID de estado es obligatorio")
-    private Integer idEstado;
+    @NotNull(message = "El ID de estado es obligatorio") 
+    private Integer estadoId;
 
-    private LocalDateTime fechaCotizacion;
+    private LocalDateTime fecha;
 
-    @NotBlank(message = "El modelo es obligatorio")
+    @NotNull(message = "El modelo es obligatorio") 
     private Integer modelo;
 
-    @NotBlank(message = "El tipo de servicio es obligatorio")
-    private TipoServicio tipoServicio;
+    @NotNull(message = "El tipo de servicio es obligatorio") 
+    private TipoServicio servicio; 
 }

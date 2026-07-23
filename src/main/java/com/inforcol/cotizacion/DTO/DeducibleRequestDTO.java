@@ -1,4 +1,4 @@
-package com.inforcol.cotizacion.DTO.deducibleDTO;
+package com.inforcol.cotizacion.dto.deducibleDTO;
 
 import lombok.Data;
 
