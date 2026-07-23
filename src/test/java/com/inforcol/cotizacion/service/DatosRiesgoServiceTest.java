@@ -12,7 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.inforcol.cotizacion.DTO.datos_riesgo.DatosRiesgoDTO;
+import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoDTO;
 import com.inforcol.cotizacion.mapper.DatosRiesgoMapper;
 import com.inforcol.cotizacion.model.DatosRiesgo;
 import com.inforcol.cotizacion.model.DatosRiesgo.TipoServicio;

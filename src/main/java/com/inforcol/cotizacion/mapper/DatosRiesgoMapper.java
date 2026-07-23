@@ -1,6 +1,6 @@
 package com.inforcol.cotizacion.mapper;
 
-import com.inforcol.cotizacion.DTO.datos_riesgo.DatosRiesgoDTO;
+import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoDTO;
 import com.inforcol.cotizacion.model.DatosRiesgo;
 
 import org.mapstruct.InheritConfiguration;

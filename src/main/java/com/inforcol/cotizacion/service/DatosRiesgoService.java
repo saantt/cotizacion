@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.inforcol.cotizacion.DTO.datos_riesgo.DatosRiesgoDTO;
+import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoDTO;
 import com.inforcol.cotizacion.mapper.DatosRiesgoMapper;
 import com.inforcol.cotizacion.model.DatosRiesgo;
 import com.inforcol.cotizacion.repository.DatosRiesgoRepository;
