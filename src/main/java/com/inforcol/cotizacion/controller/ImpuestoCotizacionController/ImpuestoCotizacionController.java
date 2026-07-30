@@ -20,10 +20,12 @@ import com.inforcol.cotizacion.service.ImpuestoCotizacionService.ImpuestoCotizac
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Validated
 @RequestMapping("/api/impuestos-cotizacion")
+@Slf4j
 public class ImpuestoCotizacionController {
 
     private final ImpuestoCotizacionService service;
@@ -36,6 +38,7 @@ public class ImpuestoCotizacionController {
     public ResponseEntity<ImpuestoCotizacionResponse> crear(
             @Valid @RequestBody ImpuestoCotizacionRequest request) {
 
+        log.info("Solicitud para crear impuesto de cotizacion");
         ImpuestoCotizacionResponse respuesta = service.crear(request);
 
         return ResponseEntity
@@ -46,6 +49,7 @@ public class ImpuestoCotizacionController {
     @GetMapping
     public ResponseEntity<List<ImpuestoCotizacionResponse>> listarTodos() {
 
+        log.info("Solicitud para listar todos los impuestos de cotizacion");
         return ResponseEntity.ok(service.listarTodos());
     }
 
@@ -55,6 +59,7 @@ public class ImpuestoCotizacionController {
             @Positive(message = "El id debe ser mayor que cero")
             Integer id) {
 
+        log.info("Solicitud para buscar impuesto de cotizacion con id: {}", id);
         return ResponseEntity.ok(service.buscarPorId(id));
     }
 
@@ -68,6 +73,7 @@ public class ImpuestoCotizacionController {
             @RequestBody
             ImpuestoCotizacionRequest request) {
 
+        log.info("Solicitud para actualizar impuesto de cotizacion con id: {}", id);
         return ResponseEntity.ok(
                 service.actualizar(id, request)
         );
@@ -80,6 +86,7 @@ public class ImpuestoCotizacionController {
             @Positive(message = "El id debe ser mayor que cero")
             Integer id) {
 
+        log.info("Solicitud para eliminar impuesto de cotizacion con id: {}", id);
         service.eliminar(id);
 
         return ResponseEntity.noContent().build();

@@ -9,7 +9,10 @@ import com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO.ImpuestoCotizacionRespo
 import com.inforcol.cotizacion.model.ImpuestoCotizacion.ImpuestoCotizacion;
 import com.inforcol.cotizacion.repository.ImpuestoCotizacionRepository.ImpuestoCotizacionRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class ImpuestoCotizacionService {
     private final ImpuestoCotizacionRepository repository;
 
@@ -18,6 +21,8 @@ public class ImpuestoCotizacionService {
     }
 
     public ImpuestoCotizacionResponse crear(ImpuestoCotizacionRequest request) {
+        log.info("Creando impuesto de cotizacion");
+
         ImpuestoCotizacion impuesto = new ImpuestoCotizacion();
         impuesto.setIdCotizacion(request.getIdCotizacion());
         impuesto.setConcepto(request.getConcepto());
@@ -28,6 +33,8 @@ public class ImpuestoCotizacionService {
     }
 
     public List<ImpuestoCotizacionResponse> listarTodos() {
+        log.info("Listando todos los impuestos de cotizacion");
+
         return repository.findAll()
                 .stream()
                 .map(this::convertirAResponse)
@@ -35,12 +42,16 @@ public class ImpuestoCotizacionService {
     }
 
     public ImpuestoCotizacionResponse buscarPorId(Integer id) {
+        log.info("Buscando impuesto de cotizacion con id: {}", id);
+
         ImpuestoCotizacion impuesto = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("No se encontró el impuesto con id: " + id));
         return convertirAResponse(impuesto);
     }
 
     public ImpuestoCotizacionResponse actualizar(Integer id, ImpuestoCotizacionRequest request) {
+        log.info("Actualizando impuesto de cotizacion con id: {}", id);
+
         ImpuestoCotizacion impuesto = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("No se encontró el impuesto con id: " + id));
 
@@ -53,6 +64,8 @@ public class ImpuestoCotizacionService {
     }
 
     public void eliminar(Integer id) {
+        log.info("Eliminando impuesto de cotizacion con id: {}", id);
+
         ImpuestoCotizacion impuesto = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("No se encontró el impuesto con id: " + id));
         repository.delete(impuesto);
