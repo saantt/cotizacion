@@ -16,13 +16,13 @@ public class MarcaVehiculo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_marca", nullable = false)
-    private Long id_marca;
+    private Long idMarca;
 
     @Column(name = "nombre_marca", nullable = false)
-    private String nombre_marca;
+    private String nombreMarca;
 
     @Column(name = "pais_origen", nullable = false)
-    private String pais_origen;
+    private String paisOrigen;
 
     @Column(name = "abreviatura", nullable = false)
     private String abreviatura;
