@@ -16,10 +16,10 @@ public class OpenApiConfig {
                 .info(new Info()
                         .title("API Cotización")
                         .version("1.0.0")
-                        .description("API para la gestión de deducibles, coberturas y cotizaciones.")
+                        .description("API para la gestión de deducibles")
                         .contact(new Contact()
                                 .name("Santiago Gómez Marín")
-                                .email("correo@ejemplo.com")));
+                                .email("sgomez@inforcl.com")));
 
     }
 
