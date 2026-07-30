@@ -19,27 +19,54 @@ import com.inforcol.cotizacion.dto.coverage.CoverageResponseDto;
 import com.inforcol.cotizacion.dto.coverage.CoverageUpdateRequestDto;
 import com.inforcol.cotizacion.service.CoverageService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/coverage")
 @Slf4j
+@Tag(
+        name = "Coverage",
+        description = "API for coverage management."
+)
 public class CoverageController {
 
     @Autowired
     private CoverageService coverageService;
 
     // GET ALL
+    @Operation(
+        summary = "Get all coverages",
+        description = "Get a list of all available coverage options."
+    )
+    @ApiResponse(
+        responseCode = "200",
+        description = "Coverages obtain  successfully"
+    )
     @GetMapping
     public ResponseEntity<List<CoverageResponseDto>> getAllCoverages() {
         log.info("getAllCoverages() - Request received");
+
+
         List<CoverageResponseDto> coverages = coverageService.getAllCoverages();
         log.info("getAllCoverages() - Request completed successfully");
         return ResponseEntity.ok(coverages);
     }
 
     // GET BY ID
+    @Operation(
+        summary = "Get coverage by id",
+        description = "Get specific coverage using its unique identifier."
+    )
+    @ApiResponse(
+        responseCode = "200",
+        description = "Coverage updated successfully"
+    )
+
     @GetMapping("/{id}")
     public ResponseEntity<CoverageResponseDto> getCoverageById(@PathVariable String id) {
 
@@ -53,6 +80,14 @@ public class CoverageController {
     }
 
     // POST
+    @Operation(
+        summary = "Create coverage",
+        description = "Creates a new coverage with the information provided in the request."
+    )
+    @ApiResponse(
+        responseCode = "201",
+        description = "Coverage created successfully"
+    )
     @PostMapping
     public ResponseEntity<CoverageResponseDto> createCoverage(@Valid @RequestBody CoverageRequestDto dto) {
 
@@ -66,6 +101,14 @@ public class CoverageController {
     }
 
     // PUT
+    @Operation(
+        summary = "Update coverage",
+        description = "Updates an existing coverage using the provided identifier and data."
+    )
+    @ApiResponse(
+        responseCode = "200",
+        description = "Coverage updated successfully"
+    )
     @PutMapping("/{id}")
     public ResponseEntity<CoverageResponseDto> updateCoverage(
             @Valid @PathVariable String id,
@@ -80,7 +123,15 @@ public class CoverageController {
         return ResponseEntity.ok(response);
     }
 
-    // CRUD
+    // DELETE
+    @Operation(
+        summary = "Delete coverage",
+        description = "Deletes an existing coverage using its unique identifier."
+    )
+    @ApiResponse(
+        responseCode = "204",
+        description = "Coverage deleted successfully"
+    )
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCoverage(@PathVariable String id) {
 
