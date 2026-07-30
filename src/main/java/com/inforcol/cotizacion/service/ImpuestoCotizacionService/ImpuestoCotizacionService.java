@@ -1,12 +1,13 @@
-package com.inforcol.cotizacion.service;
-
-import com.inforcol.cotizacion.dto.ImpuestoCotizacionRequest;
-import com.inforcol.cotizacion.dto.ImpuestoCotizacionResponse;
-import com.inforcol.cotizacion.model.ImpuestoCotizacion;
-import com.inforcol.cotizacion.repository.ImpuestoCotizacionRepository;
-import org.springframework.stereotype.Service;
+package com.inforcol.cotizacion.service.ImpuestoCotizacionService;
 
 import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO.ImpuestoCotizacionRequest;
+import com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO.ImpuestoCotizacionResponse;
+import com.inforcol.cotizacion.model.ImpuestoCotizacion.ImpuestoCotizacion;
+import com.inforcol.cotizacion.repository.ImpuestoCotizacionRepository.ImpuestoCotizacionRepository;
 
 @Service
 public class ImpuestoCotizacionService {
