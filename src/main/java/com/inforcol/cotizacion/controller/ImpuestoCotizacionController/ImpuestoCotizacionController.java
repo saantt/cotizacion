@@ -18,6 +18,10 @@ import com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO.ImpuestoCotizacionReque
 import com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO.ImpuestoCotizacionResponse;
 import com.inforcol.cotizacion.service.ImpuestoCotizacionService.ImpuestoCotizacionService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +29,9 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @Validated
 @RequestMapping("/api/impuestos-cotizacion")
+@Tag(
+        name = "Impuestos de cotización",
+        description = "Operaciones para administrar los impuestos de una cotización")
 @Slf4j
 public class ImpuestoCotizacionController {
 
@@ -34,6 +41,13 @@ public class ImpuestoCotizacionController {
         this.service = service;
     }
 
+    @Operation(
+            summary = "Crear un impuesto",
+            description = "Registra un nuevo impuesto asociado a una cotización")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Impuesto creado correctamente"),
+            @ApiResponse(responseCode = "400", description = "Datos de la solicitud no válidos")
+    })
     @PostMapping
     public ResponseEntity<ImpuestoCotizacionResponse> crear(
             @Valid @RequestBody ImpuestoCotizacionRequest request) {
@@ -46,6 +60,10 @@ public class ImpuestoCotizacionController {
                 .body(respuesta);
     }
 
+    @Operation(
+            summary = "Listar impuestos",
+            description = "Obtiene todos los impuestos de cotización registrados")
+    @ApiResponse(responseCode = "200", description = "Listado obtenido correctamente")
     @GetMapping
     public ResponseEntity<List<ImpuestoCotizacionResponse>> listarTodos() {
 
@@ -53,6 +71,13 @@ public class ImpuestoCotizacionController {
         return ResponseEntity.ok(service.listarTodos());
     }
 
+    @Operation(
+            summary = "Consultar un impuesto",
+            description = "Busca un impuesto de cotización por su identificador")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Impuesto encontrado"),
+            @ApiResponse(responseCode = "400", description = "Identificador no válido")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<ImpuestoCotizacionResponse> buscarPorId(
             @PathVariable
@@ -63,6 +88,13 @@ public class ImpuestoCotizacionController {
         return ResponseEntity.ok(service.buscarPorId(id));
     }
 
+    @Operation(
+            summary = "Actualizar un impuesto",
+            description = "Actualiza los datos de un impuesto de cotización existente")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Impuesto actualizado correctamente"),
+            @ApiResponse(responseCode = "400", description = "Identificador o datos no válidos")
+    })
     @PutMapping("/{id}")
     public ResponseEntity<ImpuestoCotizacionResponse> actualizar(
             @PathVariable
@@ -80,6 +112,13 @@ public class ImpuestoCotizacionController {
     }
 
 
+    @Operation(
+            summary = "Eliminar un impuesto",
+            description = "Elimina un impuesto de cotización por su identificador")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Impuesto eliminado correctamente"),
+            @ApiResponse(responseCode = "400", description = "Identificador no válido")
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(
             @PathVariable
