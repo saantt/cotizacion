@@ -8,12 +8,14 @@ import com.inforcol.cotizacion.mapper.DeducibleMapper;
 import com.inforcol.cotizacion.model.Deducible;
 import com.inforcol.cotizacion.repository.DeducibleRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class DeducibleServiceImpl implements DeducibleService {
 
     private final DeducibleRepository repository;
@@ -23,6 +25,7 @@ public class DeducibleServiceImpl implements DeducibleService {
     public List<DeducibleResponseDTO> getAllDeducibles() {
 
         List<Deducible> deducibles = repository.findAll();
+        log.info("DeducibleServiceImpl ->  getAllDeducibles() {}");
 
         return deducibles.stream()
                 .map(mapper::toResponseDTO)
@@ -36,6 +39,7 @@ public class DeducibleServiceImpl implements DeducibleService {
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
                                 "No existe un deducible con id: " + id));
+        log.info("DeducibleServiceImpl ->   findByDeducibleId(Long id) {}",id);
 
         return mapper.toResponseDTO(deducible);
     }
@@ -48,6 +52,7 @@ public class DeducibleServiceImpl implements DeducibleService {
         Deducible deducible = mapper.toEntity(request);
 
         Deducible guardado = repository.save(deducible);
+        log.info("DeducibleServiceImpl ->   createDeducible() {}",request);
 
         return mapper.toResponseDTO(guardado);
     }
@@ -67,6 +72,7 @@ public class DeducibleServiceImpl implements DeducibleService {
         deducible.setMonto_minimo(request.getMonto_minimo());
 
         Deducible actualizado = repository.save(deducible);
+        log.info("DeducibleServiceImpl ->  updateDeducible() {}",id,request);
 
         return mapper.toResponseDTO(actualizado);
     }
