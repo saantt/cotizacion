@@ -11,7 +11,11 @@ import com.inforcol.cotizacion.model.CoberturaRiesgo;
 import com.inforcol.cotizacion.model.CoberturaRiesgoId;
 import com.inforcol.cotizacion.repository.CoberturaRiesgoRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
+
 public class CoberturaRiesgoServiceImpl implements CoberturaRiesgoService {
 
     private final CoberturaRiesgoRepository coberturaRiesgoRepository;
@@ -25,6 +29,8 @@ public class CoberturaRiesgoServiceImpl implements CoberturaRiesgoService {
 
     @Override
     public List<CoberturaRiesgoResponseDto> getAllCoberturaRiesgo() {
+        log.info("Obteniendo todas las coberturas de riesgo");
+
         return coberturaRiesgoRepository.findAll()
                 .stream()
                 .map(coberturaRiesgoServiceMapper::toDto)
@@ -33,6 +39,10 @@ public class CoberturaRiesgoServiceImpl implements CoberturaRiesgoService {
 
     @Override
     public CoberturaRiesgoResponseDto findByCoberturaRiesgoId(String idCotizacion, String idCobertura) {
+        
+        log.info("Buscando cobertura. Cotización: {}, Cobertura: {}",
+                idCotizacion, idCobertura);
+        
         CoberturaRiesgoId id = new CoberturaRiesgoId(idCotizacion, idCobertura);
         return coberturaRiesgoRepository.findById(id)
                 .map(coberturaRiesgoServiceMapper::toDto)
@@ -42,13 +52,22 @@ public class CoberturaRiesgoServiceImpl implements CoberturaRiesgoService {
 
     @Override
     public CoberturaRiesgoResponseDto createCoberturaRiesgo(CoberturaRiesgoRequestDto request) {
+        
+        log.info("Creando cobertura de riesgo: {]", request);
+
         CoberturaRiesgo entity = coberturaRiesgoServiceMapper.toEntity(request);
         CoberturaRiesgo saved = coberturaRiesgoRepository.save(entity);
+        
+        log.info("Cobertura creada correctamente");
+        
         return coberturaRiesgoServiceMapper.toDto(saved);
     }
 
     @Override
     public CoberturaRiesgoResponseDto updateCoberturaRiesgo(String idCotizacion, String idCobertura, CoberturaRiesgoRequestDto request) {
+
+        log.info("Actualizando cobertura {} - {}", idCotizacion, idCobertura);
+
         CoberturaRiesgoId id = new CoberturaRiesgoId(idCotizacion, idCobertura);
         CoberturaRiesgo existing = coberturaRiesgoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(
@@ -62,6 +81,9 @@ public class CoberturaRiesgoServiceImpl implements CoberturaRiesgoService {
 
     @Override
     public void deleteCoberturaRiesgo(String idCotizacion, String idCobertura) {
+
+        log.info("Eliminando cobertura {} - {}", idCotizacion, idCobertura);
+
         CoberturaRiesgoId id = new CoberturaRiesgoId(idCotizacion, idCobertura);
         CoberturaRiesgo existing = coberturaRiesgoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(

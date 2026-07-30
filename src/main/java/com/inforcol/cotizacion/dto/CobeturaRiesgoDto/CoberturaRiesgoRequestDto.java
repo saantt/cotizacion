@@ -15,7 +15,7 @@ public class CoberturaRiesgoRequestDto {
      @NotBlank
     private String idCobertura;
 
-    private Integer idDeducible; // opcional, puede ir null
+    private Integer idDeducible; 
 
     @NotNull
     @Positive
