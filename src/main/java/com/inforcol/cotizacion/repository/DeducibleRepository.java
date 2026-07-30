@@ -11,13 +11,10 @@ public interface DeducibleRepository extends JpaRepository<Deducible, Long> {
 
     List<Deducible> findByPorcentajeGreaterThan(Integer porcentaje);
 
-    List<Deducible> findByMontoMinimoGreaterThan(Double monto);
-
     List<Deducible> findByPorcentajeBetween(Integer inicio, Integer fin);
 
     boolean existsByPorcentaje(Integer porcentaje);
 
-    boolean existsByPorcentajeAndMontoMinimo(Integer porcentaje,
-                                             Double montoMinimo);
+
 
 }
