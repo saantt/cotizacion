@@ -1,4 +1,4 @@
-package com.inforcol.cotizacion.model.estadoCotizacion;
+package com.inforcol.cotizacion.model;
 
 import java.time.LocalDateTime;
 

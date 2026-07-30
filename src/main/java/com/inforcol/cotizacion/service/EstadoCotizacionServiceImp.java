@@ -1,8 +1,9 @@
 package com.inforcol.cotizacion.service;
 
 import com.inforcol.cotizacion.dto.estadoCotizacionDTO.EstadoCotizacionDTO;
-import com.inforcol.cotizacion.model.estadoCotizacion.EstadoCotizacion;
-import com.inforcol.cotizacion.repository.estadoCotizacionRepository.EstadoCotizacionRepository;
+import com.inforcol.cotizacion.model.EstadoCotizacion;
+import com.inforcol.cotizacion.repository.EstadoCotizacionRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
