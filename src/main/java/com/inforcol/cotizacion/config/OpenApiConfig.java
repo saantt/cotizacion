@@ -4,9 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.License;
 
 @Configuration
 public class OpenApiConfig {
@@ -14,12 +12,17 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
+
+                // Información general de la API
                 .info(new Info()
-                        .title("Cotización API")
-                        .version("v1")
-                        .description("API para gestión de cotizaciones - documentación personalizada")
-                        .contact(new Contact().name("Equipo Inforcol").email("dev@inforcol.com"))
-                        .license(new License().name("MIT").url("https://opensource.org/licenses/MIT"))
-                );
+                        .title("API de Gestión de Cotizaciones")
+                        .version("1.0.0")
+                        .description("""
+                                Esta API permite administrar el proceso completo de cotizaciones
+                                dentro del sistema Inforcol.
+
+                                Todos los servicios exponen respuestas en formato JSON
+                                siguiendo estándares REST y códigos HTTP apropiados.
+                                """));
     }
 }
