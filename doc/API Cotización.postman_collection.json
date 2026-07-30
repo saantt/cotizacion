@@ -1,0 +1,1083 @@
+{
+  "info": {
+    "_postman_id": "552e01db-c690-4350-a3b5-7285baf1cf43",
+    "name": "API Cotización",
+    "description": "API para la gestión de deducibles. Colección generada a partir de Swagger UI (/api-docs).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56314834"
+  },
+  "item": [
+    {
+      "name": "Deducibles",
+      "item": [
+        {
+          "name": "Buscar deducible por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/deducibles/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "deducibles",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Buscar deducible por ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar deducible",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"porcentaje\": 10,\n  \"monto_minimo\": 1500000\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/deducibles/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "deducibles",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar deducible",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/deducibles/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "deducibles",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar deducibles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/deducibles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "deducibles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear deducible",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"porcentaje\": 58,\n  \"monto_minimo\": 590000\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/deducibles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "deducibles"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Coverage",
+      "item": [
+        {
+          "name": "Get coverage by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/coverage/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coverage",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update coverage",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre_cobertura\": \"string\",\n  \"tasa_publico\": 0,\n  \"tasa_particular\": 0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/coverage/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coverage",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete coverage",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/coverage/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coverage",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List coverage",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/coverage",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coverage"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create coverage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_cobertura\": \"string\",\n  \"nombre_cobertura\": \"string\",\n  \"tasa_publico\": 0,\n  \"tasa_particular\": 0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/coverage",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coverage"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cobertura Riesgo",
+      "item": [
+        {
+          "name": "Get cobertura riesgo by idCotizacion/idCobertura",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/coberturariesgo/:idCotizacion/:idCobertura",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coberturariesgo",
+                ":idCotizacion",
+                ":idCobertura"
+              ],
+              "variable": [
+                {
+                  "key": "idCotizacion"
+                },
+                {
+                  "key": "idCobertura"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update cobertura riesgo",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idCotizacion\": \"string\",\n  \"idCobertura\": \"string\",\n  \"idDeducible\": 0,\n  \"primaCobertura\": 0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/coberturariesgo/:idCotizacion/:idCobertura",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coberturariesgo",
+                ":idCotizacion",
+                ":idCobertura"
+              ],
+              "variable": [
+                {
+                  "key": "idCotizacion"
+                },
+                {
+                  "key": "idCobertura"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete cobertura riesgo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/coberturariesgo/:idCotizacion/:idCobertura",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coberturariesgo",
+                ":idCotizacion",
+                ":idCobertura"
+              ],
+              "variable": [
+                {
+                  "key": "idCotizacion"
+                },
+                {
+                  "key": "idCobertura"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List cobertura riesgo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/coberturariesgo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coberturariesgo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create cobertura riesgo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idCotizacion\": \"string\",\n  \"idCobertura\": \"string\",\n  \"idDeducible\": 0,\n  \"primaCobertura\": 0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/coberturariesgo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coberturariesgo"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tomador",
+      "item": [
+        {
+          "name": "Get tomador by cc",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/tomadores/:cc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tomadores",
+                ":cc"
+              ],
+              "variable": [
+                {
+                  "key": "cc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update tomador",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ccTomador\": \"9552889292\",\n  \"nombreTomador\": \"string\",\n  \"email\": \"user@example.com\",\n  \"telefono\": \"1991750358\",\n  \"fecNacimiento\": \"2026-07-30\",\n  \"ocupacion\": \"string\",\n  \"direccion\": \"string\",\n  \"genero\": \"string\",\n  \"tipPersona\": \"string\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/tomadores/:cc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tomadores",
+                ":cc"
+              ],
+              "variable": [
+                {
+                  "key": "cc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete tomador",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/tomadores/:cc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tomadores",
+                ":cc"
+              ],
+              "variable": [
+                {
+                  "key": "cc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List tomadores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/tomadores",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tomadores"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create tomador",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ccTomador\": \"9552889292\",\n  \"nombreTomador\": \"string\",\n  \"email\": \"user@example.com\",\n  \"telefono\": \"1991750358\",\n  \"fecNacimiento\": \"2026-07-30\",\n  \"ocupacion\": \"string\",\n  \"direccion\": \"string\",\n  \"genero\": \"string\",\n  \"tipPersona\": \"string\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/tomadores",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tomadores"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar tomador",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/tomadores/buscar",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tomadores",
+                "buscar"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Marca Vehiculo",
+      "item": [
+        {
+          "name": "Get marca vehiculo by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/marcavehiculo/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "marcavehiculo",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update marca vehiculo",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_marca_vehiculo\": 0,\n  \"nombre_marca_vehiculo\": \"string\",\n  \"pais_origen_vehiculo\": \"string\",\n  \"abreviatura_vehiculo\": \"string\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/marcavehiculo/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "marcavehiculo",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete marca vehiculo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/marcavehiculo/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "marcavehiculo",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List marca vehiculo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/marcavehiculo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "marcavehiculo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create marca vehiculo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_marca_vehiculo\": 0,\n  \"nombre_marca_vehiculo\": \"string\",\n  \"pais_origen_vehiculo\": \"string\",\n  \"abreviatura_vehiculo\": \"string\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/marcavehiculo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "marcavehiculo"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Impuesto Cotizacion",
+      "item": [
+        {
+          "name": "Get impuesto cotizacion by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/impuestos-cotizacion/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "impuestos-cotizacion",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update impuesto cotizacion",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idCotizacion\": \"string\",\n  \"concepto\": \"string\",\n  \"valor\": 0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/impuestos-cotizacion/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "impuestos-cotizacion",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete impuesto cotizacion",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/impuestos-cotizacion/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "impuestos-cotizacion",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List impuestos cotizacion",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/impuestos-cotizacion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "impuestos-cotizacion"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create impuesto cotizacion",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idCotizacion\": \"string\",\n  \"concepto\": \"string\",\n  \"valor\": 0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/impuestos-cotizacion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "impuestos-cotizacion"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Estado Cotizacion",
+      "item": [
+        {
+          "name": "Get estado cotizacion by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/estados-cotizacion/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "estados-cotizacion",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update estado cotizacion",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idEstado\": 0,\n  \"descripcion\": \"string\",\n  \"estado\": \"string\",\n  \"fecInicio\": \"2026-07-30T18:55:13.507Z\",\n  \"fecFin\": \"2026-07-30T18:55:13.507Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/estados-cotizacion/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "estados-cotizacion",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete estado cotizacion",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/estados-cotizacion/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "estados-cotizacion",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List estados cotizacion",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/estados-cotizacion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "estados-cotizacion"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create estado cotizacion",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idEstado\": 0,\n  \"descripcion\": \"string\",\n  \"estado\": \"string\",\n  \"fecInicio\": \"2026-07-30T18:55:13.507Z\",\n  \"fecFin\": \"2026-07-30T18:55:13.507Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/estados-cotizacion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "estados-cotizacion"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Datos Riesgo",
+      "item": [
+        {
+          "name": "Get dato riesgo by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/datos-riesgo/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "datos-riesgo",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update dato riesgo",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"string\",\n  \"matricula\": \"string\",\n  \"cedula\": \"string\",\n  \"estadoId\": 0,\n  \"fecha\": \"2026-07-30T18:55:49.998Z\",\n  \"modelo\": 0,\n  \"servicio\": \"PUBLICO\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/datos-riesgo/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "datos-riesgo",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete dato riesgo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/datos-riesgo/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "datos-riesgo",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List datos riesgo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/datos-riesgo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "datos-riesgo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create dato riesgo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": \"string\",\r\n  \"matricula\": \"string\",\r\n  \"cedula\": \"string\",\r\n  \"estadoId\": 0,\r\n  \"fecha\": \"2026-07-30T18:55:49.998Z\",\r\n  \"modelo\": 0,\r\n  \"servicio\": \"PUBLICO\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/datos-riesgo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "datos-riesgo"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:9090"
+    }
+  ]
+}
