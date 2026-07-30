@@ -2,81 +2,20 @@ package com.inforcol.cotizacion.service.ImpuestoCotizacionService;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO.ImpuestoCotizacionRequest;
 import com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO.ImpuestoCotizacionResponse;
-import com.inforcol.cotizacion.model.ImpuestoCotizacion.ImpuestoCotizacion;
-import com.inforcol.cotizacion.repository.ImpuestoCotizacionRepository.ImpuestoCotizacionRepository;
 
-import lombok.extern.slf4j.Slf4j;
+public interface ImpuestoCotizacionService {
 
-@Service
-@Slf4j
-public class ImpuestoCotizacionService {
-    private final ImpuestoCotizacionRepository repository;
+    ImpuestoCotizacionResponse crear(ImpuestoCotizacionRequest request);
 
-    public ImpuestoCotizacionService(ImpuestoCotizacionRepository repository) {
-        this.repository = repository;
-    }
+    List<ImpuestoCotizacionResponse> listarTodos();
 
-    public ImpuestoCotizacionResponse crear(ImpuestoCotizacionRequest request) {
-        log.info("Creando impuesto de cotizacion");
+    ImpuestoCotizacionResponse buscarPorId(Integer id);
 
-        ImpuestoCotizacion impuesto = new ImpuestoCotizacion();
-        impuesto.setIdCotizacion(request.getIdCotizacion());
-        impuesto.setConcepto(request.getConcepto());
-        impuesto.setValor(request.getValor());
+    ImpuestoCotizacionResponse actualizar(
+            Integer id,
+            ImpuestoCotizacionRequest request);
 
-        ImpuestoCotizacion impuestoGuardado = repository.save(impuesto);
-        return convertirAResponse(impuestoGuardado);
-    }
-
-    public List<ImpuestoCotizacionResponse> listarTodos() {
-        log.info("Listando todos los impuestos de cotizacion");
-
-        return repository.findAll()
-                .stream()
-                .map(this::convertirAResponse)
-                .toList();
-    }
-
-    public ImpuestoCotizacionResponse buscarPorId(Integer id) {
-        log.info("Buscando impuesto de cotizacion con id: {}", id);
-
-        ImpuestoCotizacion impuesto = repository.findById(id)
-            .orElseThrow(() -> new RuntimeException("No se encontró el impuesto con id: " + id));
-        return convertirAResponse(impuesto);
-    }
-
-    public ImpuestoCotizacionResponse actualizar(Integer id, ImpuestoCotizacionRequest request) {
-        log.info("Actualizando impuesto de cotizacion con id: {}", id);
-
-        ImpuestoCotizacion impuesto = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No se encontró el impuesto con id: " + id));
-
-        impuesto.setIdCotizacion(request.getIdCotizacion());
-        impuesto.setConcepto(request.getConcepto());
-        impuesto.setValor(request.getValor());
-
-        ImpuestoCotizacion impuestoActualizado = repository.save(impuesto);
-        return convertirAResponse(impuestoActualizado);
-    }
-
-    public void eliminar(Integer id) {
-        log.info("Eliminando impuesto de cotizacion con id: {}", id);
-
-        ImpuestoCotizacion impuesto = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No se encontró el impuesto con id: " + id));
-        repository.delete(impuesto);
-    }
-
-    private ImpuestoCotizacionResponse convertirAResponse(ImpuestoCotizacion impuesto) {
-        return new ImpuestoCotizacionResponse(
-                impuesto.getIdImpuestoCot(),
-                impuesto.getIdCotizacion(),
-                impuesto.getConcepto(),
-                impuesto.getValor()
-        );
-    }
+    void eliminar(Integer id);
 }
