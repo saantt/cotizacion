@@ -4,15 +4,18 @@ import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class EstadoCotizacionDTO {
 
    private Long idEstado;
 
     @NotBlank(message = "La descripción no puede estar vacía ni ser nula")
+    @Size(min = 3, max = 100, message = "La descripción debe tener entre 3 y 100 caracteres")
     private String descripcion;
 
     @NotBlank(message = "El estado es obligatorio")
+    @Size(max = 20, message = "El estado no puede superar los 20 caracteres")
     private String estado;
 
     @NotNull(message = "La fecha de inicio es obligatoria")

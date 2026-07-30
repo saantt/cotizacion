@@ -1,4 +1,4 @@
-package com.inforcol.cotizacion.model.estadoCotizacion;
+package com.inforcol.cotizacion.model;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "estado_cotizacion")
+@Table(name = "estados_cotizacion")
 @Data
 public class EstadoCotizacion {
 
