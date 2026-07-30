@@ -28,7 +28,7 @@ class DatosRiesgoServiceTest {
     DatosRiesgoMapper mapper;
 
     @InjectMocks
-    DatosRiesgoService service;
+    DatosRiesgoServiceImpl service;
 
     @Test
     void obtenerTodos_debeMapearLista() {
