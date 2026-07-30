@@ -17,26 +17,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.inforcol.cotizacion.dto.coverage.CoverageRequestDto;
 import com.inforcol.cotizacion.dto.coverage.CoverageResponseDto;
 import com.inforcol.cotizacion.dto.coverage.CoverageUpdateRequestDto;
-import com.inforcol.cotizacion.model.CoverageModel;
 import com.inforcol.cotizacion.service.CoverageService;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/coverage")
-@Slf4j 
+@Slf4j
 public class CoverageController {
 
     @Autowired
     private CoverageService coverageService;
 
-
     // GET ALL
     @GetMapping
     public ResponseEntity<List<CoverageResponseDto>> getAllCoverages() {
-        log.info("CoverageController -> getAllCoverages()");
+        log.info("getAllCoverages() - Request received");
         List<CoverageResponseDto> coverages = coverageService.getAllCoverages();
-        log.info("Coverages found: {}", coverages.size());
+        log.info("getAllCoverages() - Request completed successfully");
         return ResponseEntity.ok(coverages);
     }
 
@@ -44,28 +43,24 @@ public class CoverageController {
     @GetMapping("/{id}")
     public ResponseEntity<CoverageResponseDto> getCoverageById(@PathVariable String id) {
 
-        log.info("CoverageController -> getCoverageById()");
+        log.info("getCoverageById/{} - Request received", id);
 
         CoverageResponseDto coverage = coverageService.getCoverageById(id);
 
-        if (coverage != null) {
-            log.info("Coverage found. Id: {}", id);
-        } else {
-            log.info("No coverage found for id: {}", id);
-        }
+        log.info("getCoverageById/{} - Request completed successfully", id);
 
         return ResponseEntity.ok(coverage);
     }
 
     // POST
     @PostMapping
-    public ResponseEntity<CoverageResponseDto> createCoverage(@RequestBody CoverageRequestDto dto) {
+    public ResponseEntity<CoverageResponseDto> createCoverage(@Valid @RequestBody CoverageRequestDto dto) {
 
-        log.info("CoverageController -> createCoverage()");
+        log.info("createCoverage()- Request received");
 
         CoverageResponseDto response = coverageService.createCoverage(dto);
 
-        log.info("Coverage created successfully. Id: {}", response.getId_cobertura());
+        log.info("createCoverage() - Request completed successfully");
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -73,15 +68,14 @@ public class CoverageController {
     // PUT
     @PutMapping("/{id}")
     public ResponseEntity<CoverageResponseDto> updateCoverage(
-            @PathVariable String id,
+            @Valid @PathVariable String id,
             @RequestBody CoverageUpdateRequestDto dto) {
 
-        log.info("CoverageController -> updateCoverage()");
-        log.info("Updating coverage with id: {}", id);
+        log.info("updateCoverage/{} - Request received", id);
 
         CoverageResponseDto response = coverageService.updateCoverage(id, dto);
 
-        log.info("Coverage updated successfully. Id: {}", response.getId_cobertura());
+        log.info("updateCoverage/{} - Request completed successfully", id);
 
         return ResponseEntity.ok(response);
     }
@@ -90,16 +84,13 @@ public class CoverageController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCoverage(@PathVariable String id) {
 
-        log.info("CoverageController -> deleteCoverage()");
-        log.info("Deleting coverage with id: {}", id);
+        log.info("deleteCoverage/{} - Request received", id);
 
         coverageService.deleteCoverage(id);
 
-        log.info("Coverage deleted successfully. Id: {}", id);
+        log.info("updateCoverage/{} - Request completed successfully", id);
 
         return ResponseEntity.noContent().build();
     }
 
-
 }
-

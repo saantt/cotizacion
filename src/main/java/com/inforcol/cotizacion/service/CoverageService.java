@@ -12,7 +12,10 @@ import com.inforcol.cotizacion.mapper.CoverageMapper;
 import com.inforcol.cotizacion.model.CoverageModel;
 import com.inforcol.cotizacion.repository.CoverageRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class CoverageService {
 
     @Autowired
@@ -24,7 +27,11 @@ public class CoverageService {
     // GET ALL
     public List<CoverageResponseDto> getAllCoverages() {
 
+        log.info("Fetching all coverages from database");
+
         List<CoverageModel> coverages = coverageRepository.findAll();
+
+        log.info("Retrieved {} coverages", coverages.size());
 
         return coverages.stream()
                 .map(coverageMapper::toResponse)
@@ -34,12 +41,15 @@ public class CoverageService {
     // GET BY ID
     public CoverageResponseDto getCoverageById(String id) {
 
-        CoverageModel coverage = coverageRepository.findById(id)
-                .orElse(null);
+        log.info("Searching coverage with id: {}", id);
 
-        if (coverage == null) {
-            return null;
-        }
+        CoverageModel coverage = coverageRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.warn("Coverage not found with id: {}", id);
+                    return new RuntimeException("Coverage not found with id: " + id);
+                });
+
+        log.info("Coverage found with id: {}", id);
 
         return coverageMapper.toResponse(coverage);
     }
@@ -47,8 +57,12 @@ public class CoverageService {
     // POST
     public CoverageResponseDto createCoverage(CoverageRequestDto dto) {
 
+        log.info("Creating new coverage");
+
         CoverageModel coverage = coverageMapper.toEntity(dto);
         CoverageModel saved = coverageRepository.save(coverage);
+
+        log.info("Coverage created successfully Id: {}", saved.getId_cobertura());
 
         return coverageMapper.toResponse(saved);
     }
@@ -58,17 +72,21 @@ public class CoverageService {
             String id,
             CoverageUpdateRequestDto dto) {
 
-        CoverageModel coverage = coverageRepository.findById(id)
-                .orElseThrow(() -> 
-                    new RuntimeException("Coverage no encontrada con id: " + id));
+        log.info("Updating coverage with id: {}", id);
 
+        CoverageModel coverage = coverageRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.warn("Coverage not found with id: {}", id);
+                    return new RuntimeException("Coverage not found with id: " + id);
+                });
 
         coverage.setNombre_cobertura(dto.getNombre_cobertura());
         coverage.setTasa_publico(dto.getTasa_publico());
         coverage.setTasa_particular(dto.getTasa_particular());
 
-
         CoverageModel saved = coverageRepository.save(coverage);
+
+        log.info("Coverage updated successfully. Id: {}", saved.getId_cobertura());
 
         return coverageMapper.toResponse(saved);
     }
@@ -76,11 +94,17 @@ public class CoverageService {
     // DELETE
     public void deleteCoverage(String id) {
 
+        log.info("Deleting coverage with id: {}", id);
+
         CoverageModel coverage = coverageRepository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Coverage no encontrada con id: " + id));
+                .orElseThrow(() -> {
+                    log.warn("Coverage not found with id: {}", id);
+                    return new RuntimeException("Coverage not found with id: " + id);
+                });
 
         coverageRepository.delete(coverage);
+
+        log.info("Coverage deleted successfully. Id: {}", id);
     }
 
 }
