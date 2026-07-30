@@ -1,4 +1,4 @@
-package com.inforcol.cotizacion.dto.CobeturaRiesgoDto;
+package com.inforcol.cotizacion.dto.CoberturaRiesgoDto;
 
 import java.math.BigDecimal;
 
@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Data
+
 public class CoberturaRiesgoRequestDto {
     @NotBlank
     private String idCotizacion;
@@ -15,7 +16,7 @@ public class CoberturaRiesgoRequestDto {
      @NotBlank
     private String idCobertura;
 
-    private Integer idDeducible; 
+    private Integer idDeducible;
 
     @NotNull
     @Positive

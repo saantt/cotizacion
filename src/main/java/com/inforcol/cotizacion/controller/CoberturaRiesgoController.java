@@ -2,6 +2,8 @@ package com.inforcol.cotizacion.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inforcol.cotizacion.dto.CobeturaRiesgoDto.CoberturaRiesgoRequestDto;
-import com.inforcol.cotizacion.dto.CobeturaRiesgoDto.CoberturaRiesgoResponseDto;
+import com.inforcol.cotizacion.dto.CoberturaRiesgoDto.CoberturaRiesgoRequestDto;
+import com.inforcol.cotizacion.dto.CoberturaRiesgoDto.CoberturaRiesgoResponseDto;
+import com.inforcol.cotizacion.dto.error.ErrorResponse;
 import com.inforcol.cotizacion.service.CoberturaRiesgoService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -43,77 +48,178 @@ public class CoberturaRiesgoController {
         summary = "Obtener todas las coberturas de riesgo",
         description = "Retorna la lista completa de coberturas de riesgo registradas."
     )
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Cobertura encontrada"),
-        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    @ApiResponses({
+        @ApiResponse(
+                responseCode = "200",
+                description = "Listado obtenido correctamente",
+                content = @Content(
+                        mediaType = "application/json",
+                        schema = @Schema(implementation = CoberturaRiesgoResponseDto.class)
+                )
+        ),
+        @ApiResponse(
+                responseCode = "500",
+                description = "Error interno del servidor",
+                content = @Content(
+                        schema = @Schema(implementation = ErrorResponse.class)
+                )
+            )
     })
+
     @GetMapping
-    public List<CoberturaRiesgoResponseDto> getAllCoberturaRiesgo() {
+    public ResponseEntity<List<CoberturaRiesgoResponseDto>> getAllCoberturaRiesgo() {
         log.info("CoberturaRiesgoController -> listar()");
-        return service.getAllCoberturaRiesgo();
+        return ResponseEntity.ok(service.getAllCoberturaRiesgo());
     }
 
     @Operation(
     summary = "Buscar una cobertura de riesgo",
     description = "Obtiene una cobertura de riesgo mediante el id de la cotización y el id de la cobertura."
 )
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Cobertura encontrada"),
-        @ApiResponse(responseCode = "404", description = "Cobertura no encontrada"),
-        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    @ApiResponses({
+        @ApiResponse(
+                responseCode = "200",
+                description = "Cobertura encontrada",
+                content = @Content(
+                        schema = @Schema(implementation = CoberturaRiesgoResponseDto.class)
+                )
+        ),
+        @ApiResponse(
+                responseCode = "404",
+                description = "Cobertura no encontrada",
+                content = @Content(
+                        schema = @Schema(implementation = ErrorResponse.class)
+                )
+        ),
+        @ApiResponse(
+                responseCode = "500",
+                description = "Error interno del servidor",
+                content = @Content(
+                        schema = @Schema(implementation = ErrorResponse.class)
+                )
+        )
     })
     @GetMapping("/{idCotizacion}/{idCobertura}")
-    public CoberturaRiesgoResponseDto findByCoberturaRiesgoId(@PathVariable String idCotizacion,
+    public ResponseEntity<CoberturaRiesgoResponseDto> findByCoberturaRiesgoId(@PathVariable String idCotizacion,
                                                                @PathVariable String idCobertura) {
         log.info("CoberturaRiesgoController -> buscar() {}/{}", idCotizacion, idCobertura);
-        return service.findByCoberturaRiesgoId(idCotizacion, idCobertura);
+        return ResponseEntity.ok(service.findByCoberturaRiesgoId(idCotizacion, idCobertura));
     }
 
     @Operation(
     summary = "Crear una cobertura de riesgo",
     description = "Registra una nueva cobertura de riesgo."
 )
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "201", description = "Cobertura creada correctamente"),
-        @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos"),
-        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    @ApiResponses({
+        @ApiResponse(
+                responseCode = "201",
+                description = "Cobertura creada correctamente",
+                content = @Content(
+                        schema = @Schema(implementation = CoberturaRiesgoResponseDto.class)
+                )
+        ),
+        @ApiResponse(
+                responseCode = "400",
+                description = "Solicitud inválida",
+                content = @Content(
+                        schema = @Schema(implementation = ErrorResponse.class)
+                )
+        ),
+        @ApiResponse(
+                responseCode = "500",
+                description = "Error interno del servidor",
+                content = @Content(
+                        schema = @Schema(implementation = ErrorResponse.class)
+                )
+        )
     })
     @PostMapping
-    public CoberturaRiesgoResponseDto createCoberturaRiesgo(@RequestBody CoberturaRiesgoRequestDto request) {
+    public ResponseEntity<CoberturaRiesgoResponseDto> createCoberturaRiesgo(@RequestBody CoberturaRiesgoRequestDto request) {
         log.info("CoberturaRiesgoController -> guardar() {}", request);
-        return service.createCoberturaRiesgo(request);
+        return  ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(service.createCoberturaRiesgo(request));
     }
 
     @Operation(
     summary = "Actualizar una cobertura de riesgo",
     description = "Actualiza la información de una cobertura de riesgo existente."
 )
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Cobertura actualizada correctamente"),
-        @ApiResponse(responseCode = "400", description = "Solicitud inválida"),
-        @ApiResponse(responseCode = "404", description = "Cobertura no encontrada"),
-        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    @ApiResponses({
+        @ApiResponse(
+                responseCode = "200",
+                description = "Cobertura actualizada correctamente",
+                content = @Content(
+                        schema = @Schema(implementation = CoberturaRiesgoResponseDto.class)
+                )
+        ),
+        @ApiResponse(
+                responseCode = "404",
+                description = "Cobertura no encontrada",
+                content = @Content(
+                        schema = @Schema(implementation = ErrorResponse.class)
+                )
+        ),
+        @ApiResponse(
+                responseCode = "400",
+                description = "Solicitud inválida",
+                content = @Content(
+                        schema = @Schema(implementation = ErrorResponse.class)
+                )
+        ),
+        @ApiResponse(
+                responseCode = "500",
+                description = "Error interno del servidor",
+                content = @Content(
+                        schema = @Schema(implementation = ErrorResponse.class)
+                )
+        )
     })
     @PutMapping("/{idCotizacion}/{idCobertura}")
-    public CoberturaRiesgoResponseDto updateCoberturaRiesgo(@PathVariable String idCotizacion,
-                                                             @PathVariable String idCobertura,
-                                                             @RequestBody CoberturaRiesgoRequestDto request) {
+    public ResponseEntity<CoberturaRiesgoResponseDto> updateCoberturaRiesgo(@PathVariable String idCotizacion,
+        
+        @PathVariable String idCobertura,
+        
+        @RequestBody CoberturaRiesgoRequestDto request) {
         log.info("CoberturaRiesgoController -> actualizar() {}", request);
-        return service.updateCoberturaRiesgo(idCotizacion, idCobertura, request);
+        return ResponseEntity.ok(service.updateCoberturaRiesgo(idCotizacion, idCobertura, request));
     }
 
     @Operation(
     summary = "Eliminar una cobertura de riesgo",
     description = "Elimina una cobertura de riesgo mediante su identificador."
 )
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "204", description = "Cobertura eliminada correctamente"),
-        @ApiResponse(responseCode = "404", description = "Cobertura no encontrada"),
-        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    @ApiResponses({
+        @ApiResponse(
+                responseCode = "204",
+                description = "Cobertura eliminada correctamente"
+        ),
+        @ApiResponse(
+                responseCode = "404",
+                description = "Cobertura no encontrada",
+                content = @Content(
+                        schema = @Schema(implementation = ErrorResponse.class)
+                )
+        ),
+        @ApiResponse(
+                responseCode = "500",
+                description = "Error interno del servidor",
+                content = @Content(
+                        schema = @Schema(implementation = ErrorResponse.class)
+                )
+        )
     })
     @DeleteMapping("/{idCotizacion}/{idCobertura}")
-    public void deleteCoberturaRiesgo(@PathVariable String idCotizacion, @PathVariable String idCobertura) {
+    public ResponseEntity<Void> deleteCoberturaRiesgo(
+        
+        @PathVariable String idCotizacion, 
+        
+        @PathVariable String idCobertura) {
+        
         log.info("CoberturaRiesgoController -> eliminar() {}/{}", idCotizacion, idCobertura);
+        
         service.deleteCoberturaRiesgo(idCotizacion, idCobertura);
+        
+        return ResponseEntity.noContent().build();
     }
 }
