@@ -1,5 +1,6 @@
 package com.inforcol.cotizacion.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -28,6 +29,32 @@ public class CoverageServiceImpl implements CoverageService{
 
         log.info("Fetching all coverages from database");
         List<CoverageModel> coverages = coverageRepository.findAll();
+        log.info("Retrieved {} coverages", coverages.size());
+
+        return coverages.stream()
+                .map(coverageMapper::toResponse)
+                .toList();
+    }
+
+    // GET BY NAME COVERAGE
+    @Override
+    public List<CoverageResponseDto> findByNombreCobertura(String name) {
+
+        log.info("Fetching all coverages from database");
+        List<CoverageModel> coverages = coverageRepository.findByNombreCobertura(name);
+        log.info("Retrieved {} coverages", coverages.size());
+
+        return coverages.stream()
+                .map(coverageMapper::toResponse)
+                .toList();
+    }
+
+    // GET GREATER RATE
+    @Override
+    public List<CoverageResponseDto> findGreaterRate(BigDecimal rate) {
+
+        log.info("Fetching all coverages from database");
+        List<CoverageModel> coverages = coverageRepository.findGreaterRate(rate);
         log.info("Retrieved {} coverages", coverages.size());
 
         return coverages.stream()

@@ -1,5 +1,6 @@
 package com.inforcol.cotizacion.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class CoverageController {
     )
     @ApiResponse(
         responseCode = "200",
-        description = "Coverages obtain  successfully"
+        description = "Coverages obtain successfully"
     )
     @GetMapping
     public ResponseEntity<List<CoverageResponseDto>> getAllCoverages() {
@@ -56,6 +57,42 @@ public class CoverageController {
         return ResponseEntity.ok(coverages);
     }
 
+    // GET BY NAME
+    @Operation(
+        summary = "Get name coverage",
+        description = "Get the coverage by name."
+    )
+    @ApiResponse(
+        responseCode = "200",
+        description = "Coverages obtain successfully"
+    )
+    @GetMapping("/name/{name}")
+    public ResponseEntity<List<CoverageResponseDto>> findByNombreCobertura(@PathVariable String name) {
+        log.info("findByNombreCobertura() - Request received");
+
+        List<CoverageResponseDto> coverages = coverageService.findByNombreCobertura(name);
+        log.info("findByNombreCobertura() - Request completed successfully");
+        return ResponseEntity.ok(coverages);
+    } 
+
+    // GET GREATER RATE
+    @Operation(
+        summary = "Get greater rate",
+        description = "Get the highest rates at {rate}"
+    )
+    @ApiResponse(
+        responseCode = "200",
+        description = "Coverages obtain successfully"
+    )
+    @GetMapping("/rate/{rate}")
+    public ResponseEntity<List<CoverageResponseDto>> findGreaterRate(@PathVariable BigDecimal rate) {
+        log.info("findGreaterRate() - Request received");
+
+        List<CoverageResponseDto> coverages = coverageService.findGreaterRate(rate);
+        log.info("findGreaterRate() - Request completed successfully");
+        return ResponseEntity.ok(coverages);
+    } 
+
     // GET BY ID
     @Operation(
         summary = "Get coverage by id",
@@ -65,7 +102,6 @@ public class CoverageController {
         responseCode = "200",
         description = "Coverage updated successfully"
     )
-
     @GetMapping("/{id}")
     public ResponseEntity<CoverageResponseDto> getCoverageById(@PathVariable String id) {
 
