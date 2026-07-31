@@ -1,8 +1,9 @@
-package com.inforcol.cotizacion.dto;
+package com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO;
 
 import java.math.BigDecimal;
 
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -20,7 +21,7 @@ public class ImpuestoCotizacionRequest {
     private String concepto;
 
     @NotNull(message = "El valor es obligatorio")
-    @DecimalMin(value = "0.00", inclusive = true,
-            message = "El valor no puede ser negativo")
+    @DecimalMin(value = "0.00", inclusive = false, message = "El valor debe ser mayor que cero")
+    @Digits(integer = 10, fraction = 2, message = "El valor debe tener máximo 10 enteros y 2 decimales")
     private BigDecimal valor;
 }
