@@ -10,5 +10,4 @@ public class CotizacionApplication {
 		SpringApplication.run(CotizacionApplication.class, args);
 		
 	}
-
 }
