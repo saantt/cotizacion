@@ -1,4 +1,4 @@
-package com.inforcol.cotizacion.model;
+package com.inforcol.cotizacion.model.ImpuestoCotizacion;
 
 import java.math.BigDecimal;
 
