@@ -2,18 +2,19 @@ package com.inforcol.cotizacion.service;
 
 import java.util.List;
 
-import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoDTO;
+import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoRequestDto;
+import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoResponseDto;
 
 public interface DatosRiesgoService {
 
-    List<DatosRiesgoDTO> obtenerTodos();
+    List<DatosRiesgoResponseDto> obtenerTodos();
 
-    DatosRiesgoDTO obtenerPorPlaca(String placa);
+    DatosRiesgoResponseDto obtenerPorPlaca(String placa);
 
-    DatosRiesgoDTO guardar(DatosRiesgoDTO dto);
+    DatosRiesgoResponseDto guardar(DatosRiesgoRequestDto dto);
 
-    DatosRiesgoDTO actualizar(String id, DatosRiesgoDTO dto);
+    DatosRiesgoResponseDto actualizar(String id, DatosRiesgoRequestDto dto);
 
-    DatosRiesgoDTO eliminar(String id);
+    DatosRiesgoResponseDto eliminar(String id);
 
 }
