@@ -23,6 +23,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -30,6 +31,7 @@ import jakarta.validation.constraints.NotNull;
 @RestController
 @RequestMapping("/api/estados-cotizacion")
 @Validated
+@Tag(name = "Estado de Cotización", description = "Operaciones sobre estados de cotización")
 public class EstadoCotizacionController {
 
     private static final Logger log = LoggerFactory.getLogger(EstadoCotizacionController.class);
