@@ -21,6 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/deducibles")
+@CrossOrigin(origins = "http://localhost:4200")
 @Slf4j
 @Tag(
         name = "Deducibles",
