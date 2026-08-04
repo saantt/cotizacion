@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,7 @@ import jakarta.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/api/estados-cotizacion")
+@CrossOrigin(origins = "http://localhost:4200")
 @Validated
 @Tag(name = "Estado de Cotización", description = "Operaciones sobre estados de cotización")
 public class EstadoCotizacionController {

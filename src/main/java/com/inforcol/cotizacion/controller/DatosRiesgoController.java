@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoDTO;
+import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoRequestDto;
+import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoResponseDto;
 import com.inforcol.cotizacion.service.DatosRiesgoService;
 
 import jakarta.validation.Valid;
@@ -39,7 +40,7 @@ public class DatosRiesgoController {
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Lista de datos de riesgo")
     })
-    public List<DatosRiesgoDTO> listarTodos() {
+    public List<DatosRiesgoResponseDto> listarTodos() {
         log.info("DatosRiesgoController.listarTodos() - Listando todos los datos de riesgo");
         return service.obtenerTodos();
     }
@@ -50,7 +51,7 @@ public class DatosRiesgoController {
         @ApiResponse(responseCode = "200", description = "Dato encontrado"),
         @ApiResponse(responseCode = "404", description = "No encontrado")
     })
-    public ResponseEntity<DatosRiesgoDTO> obtenerPorPlaca(@Valid @PathVariable String placa) {
+    public ResponseEntity<DatosRiesgoResponseDto> obtenerPorPlaca(@Valid @PathVariable String placa) {
         log.info("DatosRiesgoController.obtenerPorPlaca() - Buscando dato de riesgo por placa: {}", placa);
         return ResponseEntity.ok(service.obtenerPorPlaca(placa));
     }
@@ -61,9 +62,10 @@ public class DatosRiesgoController {
         @ApiResponse(responseCode = "201", description = "Creado"),
         @ApiResponse(responseCode = "400", description = "Solicitud inválida")
     })
-    public DatosRiesgoDTO crear(@Valid @RequestBody DatosRiesgoDTO dto) {
+    public ResponseEntity<DatosRiesgoResponseDto> crear(@Valid @RequestBody DatosRiesgoRequestDto dto) {
         log.info("DatosRiesgoController.crear() - Creando un nuevo dato de riesgo: {}", dto);
-        return service.guardar(dto);
+        DatosRiesgoResponseDto respuesta = service.guardar(dto);
+        return ResponseEntity.status(201).body(respuesta);
     }
 
     @PutMapping("/{id}")
@@ -72,13 +74,13 @@ public class DatosRiesgoController {
         @ApiResponse(responseCode = "200", description = "Actualizado"),
         @ApiResponse(responseCode = "404", description = "No encontrado")
     })
-    public ResponseEntity<DatosRiesgoDTO> actualizar(
+    public ResponseEntity<DatosRiesgoResponseDto> actualizar(
             @PathVariable String id,
-            @Valid @RequestBody DatosRiesgoDTO dto
+            @Valid @RequestBody DatosRiesgoRequestDto dto
     ) {
         log.info("DatosRiesgoController.actualizar() - Actualizando dato de riesgo con ID: {}", id);
 
-        DatosRiesgoDTO respuesta = service.actualizar(id, dto);
+        DatosRiesgoResponseDto respuesta = service.actualizar(id, dto);
 
         return ResponseEntity.ok(respuesta);
     }
@@ -89,7 +91,7 @@ public class DatosRiesgoController {
         @ApiResponse(responseCode = "200", description = "Eliminado"),
         @ApiResponse(responseCode = "404", description = "No encontrado")
     })
-    public DatosRiesgoDTO eliminar(@PathVariable String id) {
+    public DatosRiesgoResponseDto eliminar(@PathVariable String id) {
         log.info("DatosRiesgoController.eliminar() - Eliminando dato de riesgo con ID: {}", id);
         return service.eliminar(id);
     }

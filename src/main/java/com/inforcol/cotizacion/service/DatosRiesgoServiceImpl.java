@@ -5,7 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoDTO;
+import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoRequestDto;
+import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoResponseDto;
 import com.inforcol.cotizacion.mapper.DatosRiesgoMapper;
 import com.inforcol.cotizacion.model.DatosRiesgo;
 import com.inforcol.cotizacion.repository.DatosRiesgoRepository;
@@ -22,19 +23,19 @@ public class DatosRiesgoServiceImpl implements DatosRiesgoService {
     private final DatosRiesgoMapper mapper;
 
     @Override
-    public List<DatosRiesgoDTO> obtenerTodos() {
+    public List<DatosRiesgoResponseDto> obtenerTodos() {
 
         log.info("DatosRiesgoService.obtenerTodos() - Listando todos los datos de riesgo");
 
         List<DatosRiesgo> entidades = repository.findAll();
         
         return entidades.stream()
-                .map(mapper::modeloADto)
+                .map(mapper::modeloAResponseDto)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public DatosRiesgoDTO obtenerPorPlaca(String placa) {
+    public DatosRiesgoResponseDto obtenerPorPlaca(String placa) {
 
         log.info("DatosRiesgoService.obtenerPorPlaca() - Buscando dato de riesgo por placa: {}", placa);
 
@@ -44,21 +45,21 @@ public class DatosRiesgoServiceImpl implements DatosRiesgoService {
             throw new RuntimeException("No se encontró el riesgo con placa: " + placa);
         }
 
-        return mapper.modeloADto(entidades.get(0));
+        return mapper.modeloAResponseDto(entidades.get(0));
     }
 
     @Override
-    public DatosRiesgoDTO guardar(DatosRiesgoDTO dto) {
+    public DatosRiesgoResponseDto guardar(DatosRiesgoRequestDto dto) {
 
         log.info("DatosRiesgoService.guardar() - Guardando nuevo dato de riesgo: {}", dto);
         
-        DatosRiesgo entidad = mapper.dtoAModelo(dto);
+        DatosRiesgo entidad = mapper.dtoAEntidad(dto);
 
-        return mapper.modeloADto(repository.save(entidad));
+        return mapper.modeloAResponseDto(repository.save(entidad));
     }
 
     @Override
-    public DatosRiesgoDTO actualizar(String id, DatosRiesgoDTO dto) {
+    public DatosRiesgoResponseDto actualizar(String id, DatosRiesgoRequestDto dto) {
 
         log.info("DatosRiesgoService.actualizar() - Actualizando dato de riesgo con ID: {}", id);
 
@@ -69,18 +70,18 @@ public class DatosRiesgoServiceImpl implements DatosRiesgoService {
 
         DatosRiesgo actualizado = repository.save(entidad);
 
-        return mapper.modeloADto(actualizado);
+        return mapper.modeloAResponseDto(actualizado);
     }
 
     @Override
-    public DatosRiesgoDTO eliminar(String id) {
+    public DatosRiesgoResponseDto eliminar(String id) {
 
         log.info("DatosRiesgoService.eliminar() - Eliminando dato de riesgo con ID: {}", id);
 
         DatosRiesgo entidad = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("No se encontró el riesgo con id: " + id));
 
-        DatosRiesgoDTO dto = mapper.modeloADto(entidad);
+        DatosRiesgoResponseDto dto = mapper.modeloAResponseDto(entidad);
 
         repository.delete(entidad);
 
