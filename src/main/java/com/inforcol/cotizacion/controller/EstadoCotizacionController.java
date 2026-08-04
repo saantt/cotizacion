@@ -23,6 +23,7 @@ import jakarta.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/api/estados-cotizacion")
+@CrossOrigin(origins = "http://localhost:4200")
 @Validated
 @Tag(name = "Estado de Cotización", description = "Operaciones sobre estados de cotización")
 public class EstadoCotizacionController {
