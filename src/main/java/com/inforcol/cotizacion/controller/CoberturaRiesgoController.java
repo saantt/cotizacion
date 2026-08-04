@@ -25,6 +25,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Tag(
@@ -33,7 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 )
 
 @RestController
-@CrossOrigin(origins = "http://localhost//4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/coberturariesgo")
 @Slf4j
 public class CoberturaRiesgoController {
@@ -134,7 +135,7 @@ public class CoberturaRiesgoController {
         )
     })
     @PostMapping
-    public ResponseEntity<CoberturaRiesgoResponseDto> createCoberturaRiesgo(@RequestBody CoberturaRiesgoRequestDto request) {
+    public ResponseEntity<CoberturaRiesgoResponseDto> createCoberturaRiesgo(@Valid @RequestBody CoberturaRiesgoRequestDto request) {
         log.info("CoberturaRiesgoController -> guardar() {}", request);
         return  ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -180,7 +181,7 @@ public class CoberturaRiesgoController {
         
         @PathVariable String idCobertura,
         
-        @RequestBody CoberturaRiesgoRequestDto request) {
+        @Valid @RequestBody CoberturaRiesgoRequestDto request) {
         log.info("CoberturaRiesgoController -> actualizar() {}", request);
         return ResponseEntity.ok(service.updateCoberturaRiesgo(idCotizacion, idCobertura, request));
     }

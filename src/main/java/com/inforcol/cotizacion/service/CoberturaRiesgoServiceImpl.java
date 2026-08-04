@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.inforcol.cotizacion.dto.CoberturaRiesgoDto.CoberturaRiesgoRequestDto;
 import com.inforcol.cotizacion.dto.CoberturaRiesgoDto.CoberturaRiesgoResponseDto;
+import com.inforcol.cotizacion.exception.ResourceNotFoundException;
 import com.inforcol.cotizacion.model.CoberturaRiesgo;
 import com.inforcol.cotizacion.model.CoberturaRiesgoId;
 import com.inforcol.cotizacion.repository.CoberturaRiesgoRepository;
@@ -46,7 +47,7 @@ public class CoberturaRiesgoServiceImpl implements CoberturaRiesgoService {
         CoberturaRiesgoId id = new CoberturaRiesgoId(idCotizacion, idCobertura);
         return coberturaRiesgoRepository.findById(id)
                 .map(coberturaRiesgoServiceMapper::toDto)
-                .orElseThrow(() -> new RuntimeException(
+                .orElseThrow(() -> new ResourceNotFoundException(
                         "Cobertura del riesgo no encontrada para: " + idCotizacion + " / " + idCobertura));
     }
 
@@ -86,7 +87,7 @@ public class CoberturaRiesgoServiceImpl implements CoberturaRiesgoService {
 
         CoberturaRiesgoId id = new CoberturaRiesgoId(idCotizacion, idCobertura);
         CoberturaRiesgo existing = coberturaRiesgoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(
+                .orElseThrow(() -> new ResourceNotFoundException(
                         "Cobertura del riesgo no encontrada para: " + idCotizacion + " / " + idCobertura));
         coberturaRiesgoRepository.delete(existing);
     }
