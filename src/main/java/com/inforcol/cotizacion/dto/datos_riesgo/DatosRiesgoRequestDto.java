@@ -40,4 +40,8 @@ public class DatosRiesgoRequestDto {
     @NotNull(message = "El tipo de servicio es obligatorio")
     @Schema(description = "Tipo de servicio del seguro", example = "PARTICULAR")
     private TipoServicio servicio;
+
+    @NotNull(message = "El ID de marca es obligatorio")
+    @Schema(description = "Identificador de la marca del vehículo", example = "5")
+    private Integer marcaId;
 }

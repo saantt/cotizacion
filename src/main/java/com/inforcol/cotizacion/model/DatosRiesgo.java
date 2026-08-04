@@ -42,6 +42,9 @@ public class DatosRiesgo {
     @Column(name = "tipo_servicio", length = 20)
     private TipoServicio tipoServicio;
 
+    @Column(name = "id_marca", nullable = false)
+    private Integer idMarca;
+
     /* @ManyToOne(cascade = CascadeType.PERSIST) // <-- Esto permite guardar el tomador automáticamente si es nuevo
     @JoinColumn(name = "cc_tomador", referencedColumnName = "cc_tomador")
     private Tomador tomador; */

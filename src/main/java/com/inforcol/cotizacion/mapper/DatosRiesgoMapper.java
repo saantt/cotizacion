@@ -19,6 +19,7 @@ public interface DatosRiesgoMapper {
     @Mapping(source = "fechaCotizacion", target = "fecha")
     @Mapping(source = "modelo", target = "modelo")
     @Mapping(source = "tipoServicio", target = "servicio")
+    @Mapping(source = "idMarca", target = "marcaId")
     DatosRiesgoResponseDto modeloAResponseDto(DatosRiesgo modelo);
 
     @Mapping(source = "id", target = "idCotizacion")
@@ -27,6 +28,7 @@ public interface DatosRiesgoMapper {
     @Mapping(source = "estadoId", target = "idEstado")
     @Mapping(source = "modelo", target = "modelo")
     @Mapping(source = "servicio", target = "tipoServicio")
+    @Mapping(source = "marcaId", target = "idMarca")
     DatosRiesgo dtoAEntidad(DatosRiesgoRequestDto dto);
 
     @InheritConfiguration(name = "dtoAEntidad")

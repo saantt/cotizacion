@@ -34,4 +34,7 @@ public class DatosRiesgoResponseDto {
 
     @Schema(description = "Tipo de servicio del seguro", example = "PARTICULAR")
     private TipoServicio servicio;
+
+    @Schema(description = "Identificador de la marca del vehículo", example = "5")
+    private Integer marcaId;
 }
