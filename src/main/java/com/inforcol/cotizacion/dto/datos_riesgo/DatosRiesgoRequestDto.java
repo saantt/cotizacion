@@ -4,6 +4,7 @@ import com.inforcol.cotizacion.model.DatosRiesgo.TipoServicio;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,13 +16,19 @@ import lombok.NoArgsConstructor;
 @Schema(description = "DTO de solicitud para crear o actualizar datos del riesgo")
 public class DatosRiesgoRequestDto {
 
-    @Size(max = 50)
+    @Size(min = 13, max = 13, message = "La matrícula debe tener 13 caracteres")
+    @Pattern(
+        regexp = "^COT-\\d{4}-\\d{4}$")
     @Schema(description = "Identificador de la cotización (opcional)", example = "COT-2026-0001")
     private String id;
 
     @NotBlank(message = "La placa es obligatoria")
-    @Size(max = 10)
-    @Schema(description = "Matrícula o placa del vehículo", example = "ABC123")
+    @Size(min = 7, max = 7, message = "La matrícula debe tener 7 caracteres")
+    @Pattern(
+        regexp = "^[A-Z]{3}-\\d{3}$",
+        message = "La matrícula debe tener el formato UFO-924"
+    )
+    @Schema(description = "Matrícula o placa del vehículo", example = "UFO-924")
     private String matricula;
 
     @NotBlank(message = "La cédula del tomador es obligatoria")
