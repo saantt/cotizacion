@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.inforcol.cotizacion.dto.LoginRequest;
 import com.inforcol.cotizacion.dto.LoginResponse;
+import com.inforcol.cotizacion.dto.RegistroDto;
 import com.inforcol.cotizacion.dto.UsersDto;
 import com.inforcol.cotizacion.service.UsersService;
 
@@ -36,15 +37,15 @@ public class UsersController {
         this.service = service;
     }
 
-    @Operation(summary = "Crear usuario", description = "Crea un nuevo usuario en el sistema.")
+    @Operation(summary = "Registrar usuario", description = "Crea y registra un nuevo usuario con nombre, apellido, correo, usuario y contraseña.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Usuario creado correctamente"),
+            @ApiResponse(responseCode = "201", description = "Usuario registrado correctamente"),
             @ApiResponse(responseCode = "400", description = "Datos inválidos"),
             @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
-    @PostMapping
-    public ResponseEntity<UsersDto> create(@Valid @RequestBody UsersDto dto) {
-        log.info("UsersController -> create usuario: {}", dto.getUsername());
+    @PostMapping("/register")
+    public ResponseEntity<UsersDto> register(@Valid @RequestBody RegistroDto dto) {
+        log.info("UsersController -> register usuario: {}", dto.getUsername());
         UsersDto created = service.create(dto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
@@ -66,10 +67,10 @@ public class UsersController {
             @ApiResponse(responseCode = "400", description = "Usuario o contraseña inválidos"),
             @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
-    @GetMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestParam String username, @RequestParam String password) {
-        log.info("UsersController -> login usuario: {}", username);
-        LoginResponse response = service.login(username, password);
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest dto) {
+        log.info("UsersController -> login usuario: {}", dto.getUsername());
+        LoginResponse response = service.login(dto.getUsername(), dto.getPassword());
         return ResponseEntity.ok(response);
     }
 }

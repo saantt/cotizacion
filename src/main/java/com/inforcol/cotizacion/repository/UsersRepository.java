@@ -8,4 +8,6 @@ import com.inforcol.cotizacion.model.Users;
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Integer> {
     boolean existsByUsername(String username);
+
+    boolean existsByEmail(String email);
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.inforcol.cotizacion.dto.LoginResponse;
+import com.inforcol.cotizacion.dto.RegistroDto;
 import com.inforcol.cotizacion.dto.UsersDto;
 import com.inforcol.cotizacion.mapper.UsersMapper;
 import com.inforcol.cotizacion.model.Users;
@@ -25,14 +26,19 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     @Transactional
-    public UsersDto create(UsersDto dto) {
+    public UsersDto create(RegistroDto dto) {
         if (repository.existsByUsername(dto.getUsername())) {
             throw new RuntimeException("El nombre de usuario ya existe");
+        }
+        if (repository.existsByEmail(dto.getEmail())) {
+            throw new RuntimeException("El correo electrónico ya existe");
         }
 
         Users user = mapper.toEntity(dto);
         Users saved = repository.save(user);
-        return mapper.toDto(saved);
+        UsersDto response = mapper.toDto(saved);
+        response.setPassword(null);
+        return response;
     }
 
     @Override
@@ -41,6 +47,7 @@ public class UsersServiceImpl implements UsersService {
         return repository.findAll()
                 .stream()
                 .map(mapper::toDto)
+                .peek(dto -> dto.setPassword(null))
                 .collect(Collectors.toList());
     }
 
@@ -51,7 +58,7 @@ public class UsersServiceImpl implements UsersService {
                 .stream()
                 .filter(u -> u.getUsername().equals(username) && u.getPassword().equals(password))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new RuntimeException("Usuario o contraseña inválidos"));
 
         String token = "token-" + user.getIdUser() + "-" + System.currentTimeMillis();
         return new LoginResponse(token, user.getUsername());

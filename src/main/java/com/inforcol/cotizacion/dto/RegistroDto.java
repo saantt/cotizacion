@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsersDto {
-
-    private int idUser;
+public class RegistroDto {
 
     @NotBlank(message = "El nombre es obligatorio")
     private String firstName;

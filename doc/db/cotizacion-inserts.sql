@@ -78,7 +78,14 @@ INSERT INTO INSPECCIONES (id_cotizacion, fecha_programada, estado_inspeccion) VA
 ('COT-2026-0002', '2026-07-24', 'PENDIENTE'), -- El borrador está esperando que le hagan peritaje.
 ('COT-2026-0003', '2026-07-16', 'RECHAZADA'); -- Vehículo muy antiguo o con daños previos.
 
-INSERT INTO USERS (username, password) VALUES
-('juan', '1234'), 
-('maria', 'abcd'), 
-('admin', 'admin123');
+INSERT INTO users (first_name, last_name, email, username, password)
+VALUES
+('Santiago', 'Gomez', 'santiago@gmail.com', 'saantt', '123456'),
+
+('Juan', 'Perez', 'juan.perez@gmail.com', 'jperez', '123456'),
+
+('Maria', 'Lopez', 'maria.lopez@gmail.com', 'mlopez', '123456'),
+
+('Carlos', 'Rodriguez', 'carlos.rodriguez@gmail.com', 'crodriguez', '123456'),
+
+('Ana', 'Martinez', 'ana.martinez@gmail.com', 'amartinez', '123456');

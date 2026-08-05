@@ -1,6 +1,7 @@
 package com.inforcol.cotizacion.mapper;
 
 import org.mapstruct.Mapper;
+import com.inforcol.cotizacion.dto.RegistroDto;
 import com.inforcol.cotizacion.dto.UsersDto;
 import com.inforcol.cotizacion.model.Users;
 
@@ -10,4 +11,6 @@ public interface UsersMapper {
     UsersDto toDto(Users users);
 
     Users toEntity(UsersDto dto);
+
+    Users toEntity(RegistroDto dto);
 }
