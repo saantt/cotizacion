@@ -77,3 +77,8 @@ INSERT INTO INSPECCIONES (id_cotizacion, fecha_programada, estado_inspeccion) VA
 ('COT-2026-0001', '2026-07-18', 'APROBADA'), -- Como ya está emitida, la inspección pasó.
 ('COT-2026-0002', '2026-07-24', 'PENDIENTE'), -- El borrador está esperando que le hagan peritaje.
 ('COT-2026-0003', '2026-07-16', 'RECHAZADA'); -- Vehículo muy antiguo o con daños previos.
+
+INSERT INTO USERS (username, password) VALUES
+('juan', '1234'), 
+('maria', 'abcd'), 
+('admin', 'admin123');

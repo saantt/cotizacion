@@ -100,3 +100,10 @@ CREATE TABLE INSPECCIONES (
     -- Llave Foránea
     CONSTRAINT fk_inspecciones_cotizacion FOREIGN KEY (id_cotizacion) REFERENCES DATOS_DEL_RIESGO(id_cotizacion) ON DELETE CASCADE
 );
+
+
+CREATE TABLE USERS (
+    id_user int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
