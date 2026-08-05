@@ -162,8 +162,8 @@ Base URL: `http://localhost:9090`
 
 ### Impuestos Cotización
 
-- `GET /api/impuestos-cotizacion`
-  - Lista todos los impuestos de cotización.
+- `GET /api/impuestos-cotizacion?page=0&size=10`
+  - Lista una página de impuestos de cotización (página base cero, máximo 100 registros).
 - `GET /api/impuestos-cotizacion/{id}`
   - Obtiene un impuesto por su ID.
 - `POST /api/impuestos-cotizacion`

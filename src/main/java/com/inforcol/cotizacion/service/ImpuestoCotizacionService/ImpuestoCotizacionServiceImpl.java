@@ -1,9 +1,11 @@
 package com.inforcol.cotizacion.service.ImpuestoCotizacionService;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO.ImpuestoCotizacionPageResponse;
 import com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO.ImpuestoCotizacionRequest;
 import com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO.ImpuestoCotizacionResponse;
 import com.inforcol.cotizacion.model.ImpuestoCotizacion.ImpuestoCotizacion;
@@ -33,13 +35,17 @@ public class ImpuestoCotizacionServiceImpl implements ImpuestoCotizacionService 
     }
 
     @Override
-    public List<ImpuestoCotizacionResponse> listarTodos() {
-        log.info("Listando todos los impuestos de cotizacion");
+    public ImpuestoCotizacionPageResponse listar(int page, int size) {
+        log.info("Listando impuestos de cotizacion. Pagina: {}, tamano: {}", page, size);
 
-        return repository.findAll()
-                .stream()
-                .map(this::convertirAResponse)
-                .toList();
+        PageRequest pageRequest = PageRequest.of(
+                page,
+                size,
+                Sort.by(Sort.Direction.ASC, "idImpuestoCot"));
+        Page<ImpuestoCotizacionResponse> resultado = repository.findAll(pageRequest)
+                .map(this::convertirAResponse);
+
+        return ImpuestoCotizacionPageResponse.from(resultado);
     }
 
     @Override
