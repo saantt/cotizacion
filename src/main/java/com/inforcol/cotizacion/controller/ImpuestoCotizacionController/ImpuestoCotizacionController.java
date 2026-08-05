@@ -34,7 +34,6 @@ import lombok.extern.slf4j.Slf4j;
 @CrossOrigin(origins = "http://localhost:4200")
 @Validated
 @RequestMapping("/api/impuestos-cotizacion")
-@CrossOrigin(origins = "http://localhost:4200")
 @Tag(
         name = "Impuestos de cotización",
         description = "Operaciones para administrar los impuestos de una cotización")
