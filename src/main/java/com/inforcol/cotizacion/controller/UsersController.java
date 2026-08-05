@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inforcol.cotizacion.dto.LoginRequest;
 import com.inforcol.cotizacion.dto.LoginResponse;
 import com.inforcol.cotizacion.dto.RegistroDto;
 import com.inforcol.cotizacion.dto.UsersDto;
@@ -67,10 +67,10 @@ public class UsersController {
             @ApiResponse(responseCode = "400", description = "Usuario o contraseña inválidos"),
             @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest dto) {
-        log.info("UsersController -> login usuario: {}", dto.getUsername());
-        LoginResponse response = service.login(dto.getUsername(), dto.getPassword());
+    @GetMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestParam String username, @RequestParam String password) {
+        log.info("UsersController -> login usuario: {}", username);
+        LoginResponse response = service.login(username, password);
         return ResponseEntity.ok(response);
     }
 }
