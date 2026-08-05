@@ -1,20 +1,21 @@
 package com.inforcol.cotizacion.controller.ImpuestoCotizacionController;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO.ImpuestoCotizacionPageResponse;
 import com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO.ImpuestoCotizacionRequest;
 import com.inforcol.cotizacion.dto.ImpuestoCotizacionDTO.ImpuestoCotizacionResponse;
 import com.inforcol.cotizacion.service.ImpuestoCotizacionService.ImpuestoCotizacionService;
@@ -24,10 +25,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Positive;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @Validated
 @RequestMapping("/api/impuestos-cotizacion")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -64,13 +68,21 @@ public class ImpuestoCotizacionController {
 
     @Operation(
             summary = "Listar impuestos",
-            description = "Obtiene todos los impuestos de cotización registrados")
+            description = "Obtiene una página de los impuestos de cotización registrados")
     @ApiResponse(responseCode = "200", description = "Listado obtenido correctamente")
     @GetMapping
-    public ResponseEntity<List<ImpuestoCotizacionResponse>> listarTodos() {
+    public ResponseEntity<ImpuestoCotizacionPageResponse> listar(
+            @RequestParam(defaultValue = "0")
+            @Min(value = 0, message = "La página no puede ser negativa")
+            int page,
 
-        log.info("Solicitud para listar todos los impuestos de cotizacion");
-        return ResponseEntity.ok(service.listarTodos());
+            @RequestParam(defaultValue = "10")
+            @Min(value = 1, message = "El tamaño de página debe ser mayor que cero")
+            @Max(value = 100, message = "El tamaño de página no puede superar 100 registros")
+            int size) {
+
+        log.info("Solicitud para listar impuestos de cotizacion. Pagina: {}, tamano: {}", page, size);
+        return ResponseEntity.ok(service.listar(page, size));
     }
 
     @Operation(
