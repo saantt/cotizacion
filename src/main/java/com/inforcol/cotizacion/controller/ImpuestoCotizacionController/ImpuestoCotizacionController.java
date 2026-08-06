@@ -2,6 +2,8 @@ package com.inforcol.cotizacion.controller.ImpuestoCotizacionController;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -82,6 +84,12 @@ public class ImpuestoCotizacionController {
 
         log.info("Solicitud para listar impuestos de cotizacion. Pagina: {}, tamano: {}", page, size);
         return ResponseEntity.ok(service.listar(page, size));
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<ImpuestoCotizacionResponse>> getAllImpuestosCotizacionPage(
+            Pageable pageable) {
+        return ResponseEntity.ok(service.getAllImpuestosCotizacionPage(pageable));
     }
 
     @Operation(
