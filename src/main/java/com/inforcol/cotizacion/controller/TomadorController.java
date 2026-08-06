@@ -95,6 +95,7 @@ public class TomadorController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "Filtrar los registros paginados", description = "Permite obtener los registros de tomadores de manera paginada, facilitando la navegación y búsqueda en grandes volúmenes de datos.")
     @GetMapping("/page")
     public ResponseEntity<Page<TomadorResponseDto>> getAllTomadoresPage(Pageable pageable){
         return ResponseEntity.ok(service.getAllTomadoresPage(pageable));
