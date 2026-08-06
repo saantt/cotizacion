@@ -1,9 +1,12 @@
 package com.inforcol.cotizacion.service; // Ajustado al subpaquete impl
 
+import com.inforcol.cotizacion.mapper.TomadorMapperImpl;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,14 +19,17 @@ import com.inforcol.cotizacion.repository.TomadorRepository;
 @Service
 public class TomadorServiceImpl implements TomadorService {
 
+    private final TomadorMapperImpl tomadorMapperImpl;
+
     private static final Logger log = LoggerFactory.getLogger(TomadorServiceImpl.class);
 
     private final TomadorRepository repository;
     private final TomadorMapper mapper;
 
-    public TomadorServiceImpl(TomadorRepository repository, TomadorMapper mapper) {
+    public TomadorServiceImpl(TomadorRepository repository, TomadorMapper mapper, TomadorMapperImpl tomadorMapperImpl) {
         this.repository = repository;
         this.mapper = mapper;
+        this.tomadorMapperImpl = tomadorMapperImpl;
     }
 
     // CREATE
@@ -137,4 +143,11 @@ public class TomadorServiceImpl implements TomadorService {
         repository.deleteById(cc);
         log.info("Tomador con CC: {} eliminado exitosamente", cc);
     }
+
+    @Override
+    public Page<TomadorResponseDto> getAllTomadoresPage(Pageable page){
+        
+        return repository.findAll(page).map(tomadorMapperImpl::toDto);
+    }
+
 }

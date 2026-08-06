@@ -1,6 +1,9 @@
 package com.inforcol.cotizacion.service;
 
 import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import com.inforcol.cotizacion.dto.dtotomadores.TomadorRequestDto;
 import com.inforcol.cotizacion.dto.dtotomadores.TomadorResponseDto;
 
@@ -16,9 +19,12 @@ public interface TomadorService {
 
     TomadorResponseDto getByEmail(String email);
 
+    Page<TomadorResponseDto> getAllTomadoresPage(Pageable page);
+
     List<TomadorResponseDto> getByTipoPersonaYOcupacion(String tipPersona, String ocupacion);
 
     TomadorResponseDto update(String cc, TomadorRequestDto dto);
 
     void delete(String cc);
+
 }

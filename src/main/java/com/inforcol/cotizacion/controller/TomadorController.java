@@ -2,10 +2,13 @@ package com.inforcol.cotizacion.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.inforcol.cotizacion.dto.deducibleDTO.DeducibleResponseDTO;
 import com.inforcol.cotizacion.dto.dtotomadores.TomadorRequestDto;
 import com.inforcol.cotizacion.dto.dtotomadores.TomadorResponseDto;
 import com.inforcol.cotizacion.service.TomadorService;
@@ -90,5 +93,10 @@ public class TomadorController {
         log.info("TomadorController -> Solicitud para eliminar tomador con CC: {}", cc);
         service.delete(cc);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<TomadorResponseDto>> getAllTomadoresPage(Pageable pageable){
+        return ResponseEntity.ok(service.getAllTomadoresPage(pageable));
     }
 }

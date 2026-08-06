@@ -101,6 +101,8 @@ CREATE TABLE INSPECCIONES (
     CONSTRAINT fk_inspecciones_cotizacion FOREIGN KEY (id_cotizacion) REFERENCES DATOS_DEL_RIESGO(id_cotizacion) ON DELETE CASCADE
 );
 
+DROP TABLE USERS
+
 
 CREATE TABLE users (
     id_user SERIAL PRIMARY KEY,
