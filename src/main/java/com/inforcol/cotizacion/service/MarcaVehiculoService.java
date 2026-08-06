@@ -2,6 +2,9 @@ package com.inforcol.cotizacion.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.inforcol.cotizacion.dto.marcavehiculo.MarcaVehiculoRequestDto;
 import com.inforcol.cotizacion.dto.marcavehiculo.MarcaVehiculoResponseDto;
 
@@ -24,5 +27,7 @@ public interface MarcaVehiculoService {
     String validarExistenciaMarca(String nombreMarca);
 
     MarcaVehiculoResponseDto obtenerMarcaPorAbreviatura(String abreviatura);
+
+    Page<MarcaVehiculoResponseDto> obtenerTodasMarcaVehiculoPagina(Pageable pageable);
 
 }

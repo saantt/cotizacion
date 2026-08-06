@@ -3,8 +3,11 @@ package com.inforcol.cotizacion.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.inforcol.cotizacion.dto.deducibleDTO.DeducibleResponseDTO;
 import com.inforcol.cotizacion.dto.marcavehiculo.MarcaVehiculoRequestDto;
 import com.inforcol.cotizacion.dto.marcavehiculo.MarcaVehiculoResponseDto;
 import com.inforcol.cotizacion.mapper.MarcaVehiculoMapper;
@@ -111,6 +114,11 @@ public class MarcaVehiculoServiceImpl implements MarcaVehiculoService {
         }
 
         return marcaVehiculoMapper.toDto(marca);
+    }
+
+    @Override
+    public Page<MarcaVehiculoResponseDto> obtenerTodasMarcaVehiculoPagina(Pageable pageable) {
+        return marcaVehiculoRepository.findAll(pageable).map(marcaVehiculoMapper::toDto);
     }
 
 }
