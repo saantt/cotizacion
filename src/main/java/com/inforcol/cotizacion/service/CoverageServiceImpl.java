@@ -3,11 +3,14 @@ package com.inforcol.cotizacion.service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.inforcol.cotizacion.dto.coverage.CoverageRequestDto;
 import com.inforcol.cotizacion.dto.coverage.CoverageResponseDto;
 import com.inforcol.cotizacion.dto.coverage.CoverageUpdateRequestDto;
+import com.inforcol.cotizacion.dto.deducibleDTO.DeducibleResponseDTO;
 import com.inforcol.cotizacion.mapper.CoverageMapper;
 import com.inforcol.cotizacion.model.CoverageModel;
 import com.inforcol.cotizacion.repository.CoverageRepository;
@@ -125,6 +128,11 @@ public class CoverageServiceImpl implements CoverageService{
                 });
         coverageRepository.delete(coverage);
         log.info("Coverage deleted successfully. Id: {}", id);
+    }
+
+    @Override
+    public Page<CoverageResponseDto> getAllCoveragesPage(Pageable page){
+        return coverageRepository.findAll(page).map(coverageMapper::toResponse);
     }
 
 } 
