@@ -13,7 +13,10 @@ import com.inforcol.cotizacion.model.CoberturaRiesgoId;
 import com.inforcol.cotizacion.repository.CoberturaRiesgoRepository;
 
 import lombok.extern.slf4j.Slf4j;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 @Service
 @Slf4j
 
@@ -90,5 +93,10 @@ public class CoberturaRiesgoServiceImpl implements CoberturaRiesgoService {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Cobertura del riesgo no encontrada para: " + idCotizacion + " / " + idCobertura));
         coberturaRiesgoRepository.delete(existing);
+
     }
+    @Override
+        public Page<CoberturaRiesgoResponseDto> getAllCoberturaRiesgoPage(Pageable page){
+            return coberturaRiesgoRepository.findAll(page).map(coberturaRiesgoServiceMapper::toDto);
+        }
 }
