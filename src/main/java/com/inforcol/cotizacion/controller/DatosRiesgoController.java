@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 
 import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoRequestDto;
 import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoResponseDto;
@@ -94,6 +96,12 @@ public class DatosRiesgoController {
     public DatosRiesgoResponseDto eliminar(@PathVariable String id) {
         log.info("DatosRiesgoController.eliminar() - Eliminando dato de riesgo con ID: {}", id);
         return service.eliminar(id);
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<DatosRiesgoResponseDto>> listarTodosPaginado(Pageable page) {
+        log.info("DatosRiesgoController.listarTodosPaginado() - Listando todos los datos de riesgo paginados");
+        return ResponseEntity.ok(service.obtenerTodosPaginado(page));
     }
 
 }

@@ -3,6 +3,8 @@ package com.inforcol.cotizacion.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.inforcol.cotizacion.dto.datos_riesgo.DatosRiesgoRequestDto;
@@ -86,5 +88,13 @@ public class DatosRiesgoServiceImpl implements DatosRiesgoService {
         repository.delete(entidad);
 
         return dto;
+    }
+
+    @Override
+    public Page<DatosRiesgoResponseDto> obtenerTodosPaginado(Pageable page){
+        
+        log.info("DatosRiesgoService.obtenerTodosPaginado() - Listando todos los datos de riesgo paginados");
+
+        return repository.findAll(page).map(mapper::modeloAResponseDto);
     }
 }
