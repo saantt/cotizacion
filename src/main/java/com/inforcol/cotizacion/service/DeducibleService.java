@@ -6,6 +6,9 @@ import java.util.List;
 
 import com.inforcol.cotizacion.dto.deducibleDTO.DeducibleRequestDTO;
 import com.inforcol.cotizacion.dto.deducibleDTO.DeducibleResponseDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 public interface DeducibleService {
 
@@ -18,5 +21,7 @@ public interface DeducibleService {
     DeducibleResponseDTO updateDeducible(Long id,DeducibleRequestDTO request);
 
     void deleteDeducible(Long id);
+
+    Page<DeducibleResponseDTO> getAllDedudiblesPage(Pageable page);
 
 }

@@ -15,6 +15,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -174,6 +177,11 @@ public class DeducibleController {
         log.info("DeducibleController -> eliminar() {}", id);
 
         service.deleteDeducible(id);
+    }
+    @GetMapping("/page")
+    public ResponseEntity<Page<DeducibleResponseDTO>> getAllDeduciblesPage(Pageable pageable){
+        return ResponseEntity.ok(service.getAllDedudiblesPage(pageable));
+
     }
 
 }

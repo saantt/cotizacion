@@ -9,6 +9,10 @@ import com.inforcol.cotizacion.model.Deducible;
 import com.inforcol.cotizacion.repository.DeducibleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -121,5 +125,13 @@ public class DeducibleServiceImpl implements DeducibleService {
             throw new BadRequestException(
                     "Ya existe un deducible con el mismo porcentaje y monto mínimo.");
         }
+    }
+
+    @Override
+    public Page<DeducibleResponseDTO> getAllDedudiblesPage(Pageable page){
+
+        return  repository.findAll(page).map(mapper::toResponseDTO);
+
+
     }
 }
