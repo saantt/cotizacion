@@ -7,6 +7,9 @@ import com.inforcol.cotizacion.dto.coverage.CoverageRequestDto;
 import com.inforcol.cotizacion.dto.coverage.CoverageResponseDto;
 import com.inforcol.cotizacion.dto.coverage.CoverageUpdateRequestDto;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 public interface CoverageService {
 
     List<CoverageResponseDto> getAllCoverages();
@@ -16,4 +19,5 @@ public interface CoverageService {
     CoverageResponseDto createCoverage(CoverageRequestDto dto);
     CoverageResponseDto updateCoverage(String id, CoverageUpdateRequestDto dto);
     void deleteCoverage(String id);
+    Page<CoverageResponseDto> getAllCoveragesPage(Pageable page);
 }

@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.inforcol.cotizacion.dto.coverage.CoverageRequestDto;
 import com.inforcol.cotizacion.dto.coverage.CoverageResponseDto;
 import com.inforcol.cotizacion.dto.coverage.CoverageUpdateRequestDto;
+import com.inforcol.cotizacion.dto.deducibleDTO.DeducibleResponseDTO;
 import com.inforcol.cotizacion.service.CoverageService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -179,6 +182,12 @@ public class CoverageController {
         log.info("updateCoverage/{} - Request completed successfully", id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<CoverageResponseDto>> getAllCoveragesPage(Pageable pageable){
+        return ResponseEntity.ok(coverageService.getAllCoveragesPage(pageable));
+
     }
 
 }

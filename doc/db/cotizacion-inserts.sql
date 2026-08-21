@@ -88,4 +88,4 @@ VALUES
 
 ('Carlos', 'Rodriguez', 'carlos.rodriguez@gmail.com', 'crodriguez', '123456'),
 
-('Ana', 'Martinez', 'ana.martinez@gmail.com', 'amartinez', '123456');
+('Ana', 'Martinez', 'ana.martinez@gmail.com', 'amartinez', '123456');  
